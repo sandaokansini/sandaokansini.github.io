@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<search>
+  
+  
+  
+  <entry>
+    <title>机器学习</title>
+    <link href="/2024/10/11/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/"/>
+    <url>/2024/10/11/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/</url>
+    
+    <content type="html"><![CDATA[<h1 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h1><h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><p>根据训练数据是否拥有标记信息，学习任务可大致分为<strong>监督学习</strong>（分类、回归）和 <strong>无监督学习</strong>（聚类）<br>聚类：将训练集数据分组，每组称为一个“簇”<br>泛化能力：学得模型适用于新样本的能力</p><h2 id="模型评估与选择"><a href="#模型评估与选择" class="headerlink" title="模型评估与选择"></a>模型评估与选择</h2><p>精度&#x3D;1-错误率<br><strong>过拟合</strong>：学习器将训练样本自身的特点当作所有潜在样本都具有的性质，导致泛化能力的下降<br>欠拟合：训练样本的一般性质未学好</p><h3 id="评估方法"><a href="#评估方法" class="headerlink" title="评估方法"></a>评估方法</h3><p>将数据集D划分为训练集S和测试集T<br><strong>留出法</strong>：直接将D划分为两个互斥的集合，分层采样<br><strong>交叉验证法</strong>（p次k折交叉验证）：将D划分为k个大小相似的互斥子集，分层采样，每次用k-1个子集的并集作为训练集，剩下的为测试集，共k组训练&#x2F;测试集，此过程重复p次<br>特例：留一法（LOO，p&#x3D;k）<br><strong>自助法</strong>：通过<strong>自助采样</strong>生成D’（D中样本不在D’中出现的概率为(1-1&#x2F;m)^m&#x3D;1&#x2F;e&#x3D;0.368），将D’作为训练集（改变初始数据集分布引入偏差），D\D’（:集合减法）作为测试集，使实际评估的模型和期望估计的模型使用训练样本数一致，且约1&#x2F;3的没在训练集中出现的样本用于测试，这样的测试结果称为<strong>“包外估计”</strong><br>验证集：模型评估与选择中用于评估测试的数据集</p><h3 id="性能度量"><a href="#性能度量" class="headerlink" title="性能度量"></a>性能度量</h3><p>衡量泛化性能的评估标准<br><strong>错误率与精度accuracy</strong>：相加等于1<br><strong>查准率precision</strong>：P&#x3D;$\frac{TP}{TP+FP}$<br><strong>查全率recall</strong>：$$R\frac{TP}{TP+FN}$$</p><table><thead><tr><th>正例</th><th>反例</th></tr></thead><tbody><tr><td>TP：true positive真正例</td><td>FP：false positive假正例</td></tr><tr><td>TN：true negative真反例</td><td>FN：false negative假反例</td></tr></tbody></table><p>混淆矩阵（confusion matrix）<br>P-R曲线：面积越大，学习器性能越好<br>平衡点（BEP）：P&#x3D;R时取值，值越大性能越优<br>$$ <strong>F1</strong>&#x3D;\frac{2<em>P</em>R}{P+R}&#x3D;\frac{2*TP}{样例总数+TP-TN}$$<br><em>F1:基于查准率和查全率的调和平均</em><br><em>F_β：加权调和平均</em></p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title>ArcGIS</title>
+    <link href="/2024/10/10/ArcGIS/"/>
+    <url>/2024/10/10/ArcGIS/</url>
+    
+    <content type="html"><![CDATA[<h1 id="使用ArcGIS处理数据"><a href="#使用ArcGIS处理数据" class="headerlink" title="使用ArcGIS处理数据"></a>使用ArcGIS处理数据</h1><h2 id="基本步骤"><a href="#基本步骤" class="headerlink" title="基本步骤"></a>基本步骤</h2><p>1、将需要的数据下载到本地<br>（例：DEM栅格文件）<br>2、栅格文件要素值提取至点，生成包含新的元素的点要素文件</p><h2 id="可能出现的问题"><a href="#可能出现的问题" class="headerlink" title="可能出现的问题"></a>可能出现的问题</h2><p>1、属性表不见了（双屏操作，在边边上拖过来就行了）<br>2、栅格文件导入时闪退（可能与原有点要素文件不兼容，建议更换文件）</p>]]></content>
+    
+    
+    
+  </entry>
+  
+  
+  
+  
+</search>

@@ -19,21 +19,21 @@
   <meta name="author" content="sandaokansini">
   <meta name="keywords" content="">
   
-    <meta name="description" content="机器学习绪论根据训练数据是否拥有标记信息，学习任务可大致分为监督学习（分类、回归）和 无监督学习（聚类）聚类：将训练集数据分组，每组称为一个“簇”泛化能力：学得模型适用于新样本的能力 模型评估与选择精度&#x3D;1-错误率过拟合：学习器将训练样本自身的特点当作所有潜在样本都具有的性质，导致泛化能力的下降欠拟合：训练样本的一般性质未学好 评估方法将数据集D划分为训练集S和测试集T留出法：直接将D划">
+    <meta name="description" content="机器学习 绪论 根据训练数据是否拥有标记信息，学习任务可大致分为监督学习（分类、回归）和 无监督学习（聚类） 聚类：将训练集数据分组，每组称为一个“簇” 泛化能力：学得模型适用于新样本的能力 模型评估与选择 精度&#x3D;1-错误率 过拟合：学习器将训练样本自身的特点当作所有潜在样本都具有的性质，导致泛化能力的下降 欠拟合：训练样本的一般性质未学好 评估方法 将数据集D划分为训练集S和测试集T 留出法：直">
 <meta property="og:type" content="article">
 <meta property="og:title" content="机器学习">
 <meta property="og:url" content="http://example.com/2024/10/11/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/index.html">
-<meta property="og:site_name" content="sandaokansini">
-<meta property="og:description" content="机器学习绪论根据训练数据是否拥有标记信息，学习任务可大致分为监督学习（分类、回归）和 无监督学习（聚类）聚类：将训练集数据分组，每组称为一个“簇”泛化能力：学得模型适用于新样本的能力 模型评估与选择精度&#x3D;1-错误率过拟合：学习器将训练样本自身的特点当作所有潜在样本都具有的性质，导致泛化能力的下降欠拟合：训练样本的一般性质未学好 评估方法将数据集D划分为训练集S和测试集T留出法：直接将D划">
+<meta property="og:site_name" content="三刀砍死你">
+<meta property="og:description" content="机器学习 绪论 根据训练数据是否拥有标记信息，学习任务可大致分为监督学习（分类、回归）和 无监督学习（聚类） 聚类：将训练集数据分组，每组称为一个“簇” 泛化能力：学得模型适用于新样本的能力 模型评估与选择 精度&#x3D;1-错误率 过拟合：学习器将训练样本自身的特点当作所有潜在样本都具有的性质，导致泛化能力的下降 欠拟合：训练样本的一般性质未学好 评估方法 将数据集D划分为训练集S和测试集T 留出法：直">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-11T08:32:33.000Z">
-<meta property="article:modified_time" content="2024-10-16T05:01:18.457Z">
+<meta property="article:modified_time" content="2024-10-16T12:27:17.577Z">
 <meta property="article:author" content="sandaokansini">
 <meta name="twitter:card" content="summary_large_image">
   
   
   
-  <title>机器学习 - sandaokansini</title>
+  <title>机器学习 - 三刀砍死你</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -44,6 +44,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -97,7 +99,7 @@
   <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
   <div class="container">
     <a class="navbar-brand" href="/">
-      <strong>Fluid</strong>
+      <strong>sandaokansini</strong>
     </a>
 
     <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
@@ -222,7 +224,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          555 字
+          573 字
         
       </span>
     
@@ -275,10 +277,28 @@
             
               <div class="markdown-body">
                 
-                <h1 id="机器学习"><a href="#机器学习" class="headerlink" title="机器学习"></a>机器学习</h1><h2 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h2><p>根据训练数据是否拥有标记信息，学习任务可大致分为<strong>监督学习</strong>（分类、回归）和 <strong>无监督学习</strong>（聚类）<br>聚类：将训练集数据分组，每组称为一个“簇”<br>泛化能力：学得模型适用于新样本的能力</p>
-<h2 id="模型评估与选择"><a href="#模型评估与选择" class="headerlink" title="模型评估与选择"></a>模型评估与选择</h2><p>精度&#x3D;1-错误率<br><strong>过拟合</strong>：学习器将训练样本自身的特点当作所有潜在样本都具有的性质，导致泛化能力的下降<br>欠拟合：训练样本的一般性质未学好</p>
-<h3 id="评估方法"><a href="#评估方法" class="headerlink" title="评估方法"></a>评估方法</h3><p>将数据集D划分为训练集S和测试集T<br><strong>留出法</strong>：直接将D划分为两个互斥的集合，分层采样<br><strong>交叉验证法</strong>（p次k折交叉验证）：将D划分为k个大小相似的互斥子集，分层采样，每次用k-1个子集的并集作为训练集，剩下的为测试集，共k组训练&#x2F;测试集，此过程重复p次<br>特例：留一法（LOO，p&#x3D;k）<br><strong>自助法</strong>：通过<strong>自助采样</strong>生成D’（D中样本不在D’中出现的概率为(1-1&#x2F;m)^m&#x3D;1&#x2F;e&#x3D;0.368），将D’作为训练集（改变初始数据集分布引入偏差），D\D’（:集合减法）作为测试集，使实际评估的模型和期望估计的模型使用训练样本数一致，且约1&#x2F;3的没在训练集中出现的样本用于测试，这样的测试结果称为<strong>“包外估计”</strong><br>验证集：模型评估与选择中用于评估测试的数据集</p>
-<h3 id="性能度量"><a href="#性能度量" class="headerlink" title="性能度量"></a>性能度量</h3><p>衡量泛化性能的评估标准<br><strong>错误率与精度accuracy</strong>：相加等于1<br><strong>查准率precision</strong>：P&#x3D;$\frac{TP}{TP+FP}$<br><strong>查全率recall</strong>：$$R\frac{TP}{TP+FN}$$</p>
+                <h1>机器学习</h1>
+<h2 id="绪论">绪论</h2>
+<p>根据训练数据是否拥有标记信息，学习任务可大致分为<strong>监督学习</strong>（分类、回归）和 <strong>无监督学习</strong>（聚类）<br>
+聚类：将训练集数据分组，每组称为一个“簇”<br>
+泛化能力：学得模型适用于新样本的能力</p>
+<h2 id="模型评估与选择">模型评估与选择</h2>
+<p>精度=1-错误率<br>
+<strong>过拟合</strong>：学习器将训练样本自身的特点当作所有潜在样本都具有的性质，导致泛化能力的下降<br>
+欠拟合：训练样本的一般性质未学好</p>
+<h3 id="评估方法">评估方法</h3>
+<p>将数据集D划分为训练集S和测试集T<br>
+<strong>留出法</strong>：直接将D划分为两个互斥的集合，分层采样<br>
+<strong>交叉验证法</strong>（p次k折交叉验证）：将D划分为k个大小相似的互斥子集，分层采样，每次用k-1个子集的并集作为训练集，剩下的为测试集，共k组训练/测试集，此过程重复p次<br>
+特例：留一法（LOO，p=k）<br>
+<strong>自助法</strong>：通过<strong>自助采样</strong>生成D’（D中样本不在D’中出现的概率为(（1-<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>1</mn><mi>m</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{1}{m}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>）<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msup><mrow></mrow><mi>m</mi></msup></mrow><annotation encoding="application/x-tex">^{m}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.6644em;"></span><span class="mord"><span></span><span class="msupsub"><span class="vlist-t"><span class="vlist-r"><span class="vlist" style="height:0.6644em;"><span style="top:-3.063em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span></span></span></span></span></span></span></span></span></span></span></span>=<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mn>1</mn><mi>e</mi></mfrac></mrow><annotation encoding="application/x-tex">\frac{1}{e}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.1901em;vertical-align:-0.345em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8451em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">e</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.345em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>=0.368），将D’作为训练集（改变初始数据集分布引入偏差），D\D’（:集合减法）作为测试集，使实际评估的模型和期望估计的模型使用训练样本数一致，且约1/3的没在训练集中出现的样本用于测试，这样的测试结果称为<strong>包外估计</strong><br>
+验证集：模型评估与选择中用于评估测试的数据集</p>
+<h3 id="性能度量">性能度量</h3>
+<p>衡量泛化性能的评估标准<br>
+<strong>错误率与精度accuracy</strong>：相加等于1<br>
+<strong>查准率precision</strong>：P=<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>T</mi><mi>P</mi></mrow><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>P</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{TP}{TP+FP}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2757em;vertical-align:-0.4033em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">TP</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">FP</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">TP</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4033em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><br>
+<strong>查全率recall</strong>：R=<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mi>T</mi><mi>P</mi></mrow><mrow><mi>T</mi><mi>P</mi><mo>+</mo><mi>F</mi><mi>N</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{TP}{TP+FN}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2757em;vertical-align:-0.4033em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">TP</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">FN</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">TP</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4033em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><br>
+混淆矩阵（confusion matrix）</p>
 <table>
 <thead>
 <tr>
@@ -286,7 +306,8 @@
 <th>反例</th>
 </tr>
 </thead>
-<tbody><tr>
+<tbody>
+<tr>
 <td>TP：true positive真正例</td>
 <td>FP：false positive假正例</td>
 </tr>
@@ -294,8 +315,13 @@
 <td>TN：true negative真反例</td>
 <td>FN：false negative假反例</td>
 </tr>
-</tbody></table>
-<p>混淆矩阵（confusion matrix）<br>P-R曲线：面积越大，学习器性能越好<br>平衡点（BEP）：P&#x3D;R时取值，值越大性能越优<br>$$ <strong>F1</strong>&#x3D;\frac{2<em>P</em>R}{P+R}&#x3D;\frac{2*TP}{样例总数+TP-TN}$$<br><em>F1:基于查准率和查全率的调和平均</em><br><em>F_β：加权调和平均</em></p>
+</tbody>
+</table>
+<p>P-R曲线：面积越大，学习器性能越好<br>
+平衡点（BEP）：P=R时取值，值越大性能越优<br>
+<strong><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">F_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span></strong>=<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>2</mn><mo>∗</mo><mi>P</mi><mo>∗</mo><mi>R</mi></mrow><mrow><mi>P</mi><mo>+</mo><mi>R</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{2*P*R}{P+R}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2757em;vertical-align:-0.4033em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight" style="margin-right:0.00773em;">R</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mbin mtight">∗</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">P</span><span class="mbin mtight">∗</span><span class="mord mathnormal mtight" style="margin-right:0.00773em;">R</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4033em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span>=<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><mfrac><mrow><mn>2</mn><mo>∗</mo><mi>T</mi><mi>P</mi></mrow><mrow><mi>m</mi><mo>+</mo><mi>T</mi><mi>P</mi><mo>−</mo><mi>T</mi><mi>N</mi></mrow></mfrac></mrow><annotation encoding="application/x-tex">\frac{2*TP}{m+TP-TN}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:1.2757em;vertical-align:-0.4033em;"></span><span class="mord"><span class="mopen nulldelimiter"></span><span class="mfrac"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.8723em;"><span style="top:-2.655em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mathnormal mtight">m</span><span class="mbin mtight">+</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">TP</span><span class="mbin mtight">−</span><span class="mord mathnormal mtight" style="margin-right:0.10903em;">TN</span></span></span></span><span style="top:-3.23em;"><span class="pstrut" style="height:3em;"></span><span class="frac-line" style="border-bottom-width:0.04em;"></span></span><span style="top:-3.394em;"><span class="pstrut" style="height:3em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">2</span><span class="mbin mtight">∗</span><span class="mord mathnormal mtight" style="margin-right:0.13889em;">TP</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.4033em;"><span></span></span></span></span></span><span class="mclose nulldelimiter"></span></span></span></span></span><br>
+<em><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">F_1</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight">1</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span>:基于查准率和查全率的调和平均</em><br>
+<em><span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mi>β</mi></msub></mrow><annotation encoding="application/x-tex">F_β</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.9694em;vertical-align:-0.2861em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3361em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mathnormal mtight" style="margin-right:0.05278em;">β</span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.2861em;"><span></span></span></span></span></span></span></span></span></span>：加权调和平均</em></p>
 
                 
               </div>
@@ -357,6 +383,12 @@
                 <div class="post-prevnext my-3">
                   <article class="post-prev col-6">
                     
+                    
+                      <a href="/2024/10/16/%E9%87%8D%E7%94%9F%E4%B9%8B%E6%88%91%E6%98%AF%E5%A4%A9%E6%89%8D%E7%A8%8B%E5%BA%8F%E5%91%98/" title="重生之我是天才程序员">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">重生之我是天才程序员</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
                     
                   </article>
                   <article class="post-next col-6">
@@ -420,6 +452,13 @@
 
 
   
+
+
+  
+  
+
+
+
 
 
 

@@ -845,14 +845,14 @@ i.iconfont {
   --link-hover-color: #30a9de;
   --link-hover-bg-color: #f8f9fa;
   --line-color: #eaecef;
-  --navbar-bg-color: #2f4154;
-  --navbar-text-color: #fff;
+  --navbar-bg-color: #fff4d1;
+  --navbar-text-color: #ffc3ca;
   --subtitle-color: #fff;
   --scrollbar-color: #c4c6c9;
   --scrollbar-hover-color: #a6a6a6;
   --button-bg-color: transparent;
   --button-hover-bg-color: #f2f3f5;
-  --highlight-bg-color: #f6f8fa;
+  --highlight-bg-color: #f6f6f6;
   --inlinecode-bg-color: rgba(175,184,193,0.2);
   --fold-title-color: #3c4858;
   --fold-border-color: #eaecef;

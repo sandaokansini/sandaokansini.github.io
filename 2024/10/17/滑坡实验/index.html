@@ -27,7 +27,7 @@
 <meta property="og:description" content="RF 代码基于此博客 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293from sklearn">
 <meta property="og:locale" content="zh_CN">
 <meta property="article:published_time" content="2024-10-17T07:44:38.000Z">
-<meta property="article:modified_time" content="2024-10-21T09:52:20.497Z">
+<meta property="article:modified_time" content="2024-10-21T09:57:28.876Z">
 <meta property="article:author" content="sandaokansini">
 <meta name="twitter:card" content="summary_large_image">
   
@@ -283,71 +283,7 @@
 <figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn <span class="hljs-keyword">import</span> svm<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">SVM参数</span><br><span class="hljs-string">C:惩罚系数，越高越不能容易出现误差，容易过拟合（越小则容易欠拟合）(但是此模型提高C不能改善欠拟合）</span><br><span class="hljs-string">gamma：选择径向基函数（RBF）作为kernel后，该函数自带的一个参数，gamma越大，支持向量越少，gamma越小，支持向量越多</span><br><span class="hljs-string"></span><br><span class="hljs-string">核函数：</span><br><span class="hljs-string">线性核Linear</span><br><span class="hljs-string">多项式核Poly</span><br><span class="hljs-string">高斯核rbf</span><br><span class="hljs-string">拉普拉斯核</span><br><span class="hljs-string">Sigmoid核</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br>svm.SVC(<br>    C=<span class="hljs-number">1.0</span>,<br>    kernel=<span class="hljs-string">&#x27;rbf&#x27;</span>,<br>    gamma=<span class="hljs-string">&#x27;scale&#x27;</span><br>)<br>df = pd.read_excel(<span class="hljs-string">&#x27;MLinput.xlsx&#x27;</span>)<br><span class="hljs-comment"># 去除后accuracy变低了</span><br><span class="hljs-comment"># df = df.drop([&#x27;X&#x27;, &#x27;Y&#x27;, &#x27;Z&#x27;, &#x27;sca&#x27;], axis=1)</span><br><br>feature = df.columns.tolist()<br><span class="hljs-keyword">del</span> feature[<span class="hljs-number">0</span>]<br><span class="hljs-comment"># print(feature)</span><br><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">3、滑坡/非滑坡数量情况统计</span><br><span class="hljs-string">观察样本集 非滑坡:0 与 滑坡:1 数量情况</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-keyword">import</span> seaborn <span class="hljs-keyword">as</span> sns<br><span class="hljs-keyword">from</span> matplotlib <span class="hljs-keyword">import</span> pyplot <span class="hljs-keyword">as</span> plt<br><br>sns.countplot(x=df[<span class="hljs-string">&#x27;class&#x27;</span>])<br><span class="hljs-comment"># plt.show()</span><br><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">筛选特征--&gt;降维</span><br><span class="hljs-string">特征里面两两特征之间的相关性</span><br><span class="hljs-string">    - 相关程度非常高：选择其中一个作为代表即可</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br>feature_corr = df[feature].corr()<br><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">来进行相关性的可视化</span><br><span class="hljs-string">- 热力图：颜色越浅说明相关程度越大</span><br><span class="hljs-string">    - annot=True--&gt;显示每个方格的数据</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br>plt.figure(figsize=(<span class="hljs-number">14</span>, <span class="hljs-number">8</span>))<br>sns.heatmap(feature_corr, annot=<span class="hljs-literal">False</span>)<br><span class="hljs-comment"># plt.show()</span><br><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">4  数据分割</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split<br><br>train, test = train_test_split(df, test_size=<span class="hljs-number">0.3</span>)  <span class="hljs-comment"># 纯随机采样</span><br>train_X = train[feature]<br>test_X = test[feature]<br><span class="hljs-comment"># 构建 标签</span><br>train_y = train[<span class="hljs-string">&#x27;class&#x27;</span>]<br>y_test = test[<span class="hljs-string">&#x27;class&#x27;</span>]<br><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">5  数据归一化</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-keyword">from</span> sklearn.preprocessing <span class="hljs-keyword">import</span> StandardScaler<br><br>ss = StandardScaler()<br>train_X = ss.fit_transform(train_X)<br>test_X = ss.fit_transform(test_X)<br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">6  模型训练及预测</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-keyword">from</span> sklearn.svm <span class="hljs-keyword">import</span> SVC<br>model = SVC()<br>model.fit(train_X, train_y)<br><br>y_pred = model.predict(test_X)<br><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">7 模型评价</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> confusion_matrix, classification_report, accuracy_score<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Confusion Matrix:&quot;</span>)<br><span class="hljs-built_in">print</span>(confusion_matrix(y_test, y_pred))  <span class="hljs-comment"># 输出分类结果矩阵</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Classification Report:&quot;</span>)<br><span class="hljs-built_in">print</span>(classification_report(y_test, y_pred))  <span class="hljs-comment"># 输出混淆矩阵</span><br><br>train_acc = model.score(train_X, train_y)  <span class="hljs-comment"># 内联函数</span><br>acc = accuracy_score(y_test, y_pred)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Training/Testing Accuracy: <span class="hljs-subst">&#123;train_acc, acc&#125;</span>&#x27;</span>)  <span class="hljs-comment"># 0.6293</span><br></code></pre></td></tr></table></figure>
 <h1>LR</h1>
 <p>代码基于此博客SVM</p>
-<pre><code class="hljs">from sklearn.linear_model import LogisticRegression
-import pandas as pd
-from sklearn.model_selection import GridSearchCV
-
-LR = LogisticRegression()
-
-
-param_grid = &#123;
-    'C': [1],
-    'penalty': ['l1'],  # 决定正则化类型
-    'solver': ['liblinear'],  # 决定优化算法
-    'max_iter': [1000]
-&#125;
-# 自动化参数调优
-grid_search = GridSearchCV(LR, param_grid, cv=5)
-
-df = pd.read_excel('MLinput.xlsx')
-
-feature = df.columns.tolist()
-del feature[0]
-&quot;&quot;&quot;
-4  数据分割
-&quot;&quot;&quot;
-from sklearn.model_selection import train_test_split
-
-train, test = train_test_split(df, test_size=0.3)  # 纯随机采样
-train_X = train[feature]
-test_X = test[feature]
-# 构建 标签
-train_y = train['class']
-y_test = test['class']
-
-&quot;&quot;&quot;
-5  数据归一化
-&quot;&quot;&quot;
-from sklearn.preprocessing import StandardScaler
-
-ss = StandardScaler()
-train_X = ss.fit_transform(train_X)
-test_X = ss.fit_transform(test_X)
-&quot;&quot;&quot;
-6  寻找最佳参数,训练模型
-&quot;&quot;&quot;
-grid_search.fit(train_X, train_y)
-print(&quot;Best parameters:&quot;, grid_search.best_params_)
-# 使用最优模型进行预测
-best_model = grid_search.best_estimator_
-y_pred = best_model.predict(test_X)
-
-
-&quot;&quot;&quot;
-7 模型评价
-&quot;&quot;&quot;
-from sklearn.metrics import confusion_matrix, classification_report, accuracy_score
-
-print(&quot;Confusion Matrix:&quot;)
-print(confusion_matrix(y_test, y_pred))  # 输出分类结果矩阵
-print(&quot;Classification Report:&quot;)
-print(classification_report(y_test, y_pred))  # 输出混淆矩阵
-
-train_acc = best_model.score(train_X, train_y)  # 内联函数
-acc = accuracy_score(y_test, y_pred)
-
-print(f'Training/Testing Accuracy: &#123;train_acc, acc&#125;')  # 0.6239</code></pre>
-
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">from</span> sklearn.linear_model <span class="hljs-keyword">import</span> LogisticRegression<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> GridSearchCV<br><br>LR = LogisticRegression()<br><br><br>param_grid = &#123;<br>    <span class="hljs-string">&#x27;C&#x27;</span>: [<span class="hljs-number">1</span>],<br>    <span class="hljs-string">&#x27;penalty&#x27;</span>: [<span class="hljs-string">&#x27;l1&#x27;</span>],  <span class="hljs-comment"># 决定正则化类型</span><br>    <span class="hljs-string">&#x27;solver&#x27;</span>: [<span class="hljs-string">&#x27;liblinear&#x27;</span>],  <span class="hljs-comment"># 决定优化算法</span><br>    <span class="hljs-string">&#x27;max_iter&#x27;</span>: [<span class="hljs-number">1000</span>]<br>&#125;<br><span class="hljs-comment"># 自动化参数调优</span><br>grid_search = GridSearchCV(LR, param_grid, cv=<span class="hljs-number">5</span>)<br><br>df = pd.read_excel(<span class="hljs-string">&#x27;MLinput.xlsx&#x27;</span>)<br><br>feature = df.columns.tolist()<br><span class="hljs-keyword">del</span> feature[<span class="hljs-number">0</span>]<br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">4  数据分割</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-keyword">from</span> sklearn.model_selection <span class="hljs-keyword">import</span> train_test_split<br><br>train, test = train_test_split(df, test_size=<span class="hljs-number">0.3</span>)  <span class="hljs-comment"># 纯随机采样</span><br>train_X = train[feature]<br>test_X = test[feature]<br><span class="hljs-comment"># 构建 标签</span><br>train_y = train[<span class="hljs-string">&#x27;class&#x27;</span>]<br>y_test = test[<span class="hljs-string">&#x27;class&#x27;</span>]<br><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">5  数据归一化</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-keyword">from</span> sklearn.preprocessing <span class="hljs-keyword">import</span> StandardScaler<br><br>ss = StandardScaler()<br>train_X = ss.fit_transform(train_X)<br>test_X = ss.fit_transform(test_X)<br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">6  寻找最佳参数,训练模型</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br>grid_search.fit(train_X, train_y)<br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Best parameters:&quot;</span>, grid_search.best_params_)<br><span class="hljs-comment"># 使用最优模型进行预测</span><br>best_model = grid_search.best_estimator_<br>y_pred = best_model.predict(test_X)<br><br><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-string">7 模型评价</span><br><span class="hljs-string">&quot;&quot;&quot;</span><br><span class="hljs-keyword">from</span> sklearn.metrics <span class="hljs-keyword">import</span> confusion_matrix, classification_report, accuracy_score<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Confusion Matrix:&quot;</span>)<br><span class="hljs-built_in">print</span>(confusion_matrix(y_test, y_pred))  <span class="hljs-comment"># 输出分类结果矩阵</span><br><span class="hljs-built_in">print</span>(<span class="hljs-string">&quot;Classification Report:&quot;</span>)<br><span class="hljs-built_in">print</span>(classification_report(y_test, y_pred))  <span class="hljs-comment"># 输出混淆矩阵</span><br><br>train_acc = best_model.score(train_X, train_y)  <span class="hljs-comment"># 内联函数</span><br>acc = accuracy_score(y_test, y_pred)<br><br><span class="hljs-built_in">print</span>(<span class="hljs-string">f&#x27;Training/Testing Accuracy: <span class="hljs-subst">&#123;train_acc, acc&#125;</span>&#x27;</span>)  <span class="hljs-comment"># 0.6239</span><br></code></pre></td></tr></table></figure>
                 
               </div>
             
@@ -409,9 +345,9 @@ print(f'Training/Testing Accuracy: &#123;train_acc, acc&#125;')  # 0.6239</code>
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/10/18/config/" title="config">
+                      <a href="/2024/10/19/Logistic%E5%9B%9E%E5%BD%92/" title="Logistic回归">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">config</span>
+                        <span class="hidden-mobile">Logistic回归</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     

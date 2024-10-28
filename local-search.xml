@@ -34,7 +34,7 @@
     <link href="/2024/10/17/%E5%9F%BA%E4%BA%8E%E7%89%A9%E7%90%86%E6%95%B0%E6%8D%AE%E7%9A%84%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B%E7%94%A8%E4%BA%8E%E4%B8%89%E5%B3%A1%E5%BA%93%E5%8C%BA%E6%BB%91%E5%9D%A1%E6%98%93%E5%8F%91%E6%80%A7%E8%AF%84%E4%BC%B0/"/>
     <url>/2024/10/17/%E5%9F%BA%E4%BA%8E%E7%89%A9%E7%90%86%E6%95%B0%E6%8D%AE%E7%9A%84%E6%95%B0%E6%8D%AE%E9%A9%B1%E5%8A%A8%E6%A8%A1%E5%9E%8B%E7%94%A8%E4%BA%8E%E4%B8%89%E5%B3%A1%E5%BA%93%E5%8C%BA%E6%BB%91%E5%9D%A1%E6%98%93%E5%8F%91%E6%80%A7%E8%AF%84%E4%BC%B0/</url>
     
-    <content type="html"><![CDATA[<p><a href="https://mp.weixin.qq.com/s/3fUJaTqLTu-UgQkbqGmKxw">文献链接</a></p>]]></content>
+    <content type="html"><![CDATA[<p><a href="https://mp.weixin.qq.com/s/3fUJaTqLTu-UgQkbqGmKxw">文献推荐链接</a><br><a href="https://www.sciencedirect.com/science/article/pii/S1674987123000889?ref=pdf_download&amp;fr=RR-2&amp;rr=8d341b785e93ddc2#ab010">原文链接</a></p><h2 id="总述">总述##</h2><p><a href="image/%E6%B5%81%E7%A8%8B%E5%9B%BE.jpg">方法流程图</a></p><p>|数据处理|预测模型|评估方法|<br>|Scoops 3D|随机森林法|AUC|</p><p>问题：非滑坡样本的生成<br>解决现状：分形理论模型生成的低坡区、无滑坡区和极低易发区的随机选择</p><p>Scoops 3D：一种具有很高的可解释性的物理方法，三维极限平衡方法，考虑了边坡的几何形状、材料特性和边界条件</p><h3 id="数据">数据</h3><p>研究区域：巴东县、秭归县；<br>方法：ArcGIS处理、提取收集的数据，将处理后的土地深度数据和相应的岩土参数输入到Scoops 3D，（安全系数）FS大于1.5被随机选择为负样本，从而建立完整数据集<br>数据收集：影响因子根据过往经验选取<br><a href="image/%E5%BD%B1%E5%93%8D%E5%9B%A0%E5%AD%90.png">影响因子</a><br>数据处理：使用ArcGIS</p>]]></content>
     
     
     
@@ -119,6 +119,19 @@
       <tag>知识库</tag>
       
     </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
+    <title></title>
+    <link href="/2022/01/11/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/"/>
+    <url>/2022/01/11/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/</url>
+    
+    <content type="html"><![CDATA[<h1>组合数学考试速成</h1><p>第一章、排列与组合</p><ol><li>高中学过的。</li><li>允许重复的组合、不相邻组合、格路模型</li><li>插空法、隔板法。</li><li>排序生成算法（三选一、考定义和具体实操）</li></ol><p>第二章、递推关系和母函数</p><ol><li>给母函数求an</li><li>给递推关系求母函数和an</li><li>给母函数求递推关系</li><li>解常系数齐次递推关系</li><li>司特林数</li></ol><p>第三章、容斥原理和鸽巢原理</p><ol><li>考得容易，基本都是考鸽巢原理。但也有容斥原理。</li><li>棋盘多项式。有禁区的排列。</li><li>Ramsey数，低概率。</li></ol><p>第四章、Burnside引理与Polya定理</p><ol><li>只考Polya定理，Burnside引理能解决的Polya定理也能干。</li></ol><p>第五章、区组设计</p><ol><li><p>什么是拉丁方，如何构造拉丁方？</p></li><li><p>（b，v，r，k，朗达）</p><p><img src="images/%E7%BB%84%E5%90%88%E6%95%B0%E5%AD%A6/image-20220111165410730.png" alt="image-20220111165410730"></p></li></ol>]]></content>
+    
+    
     
   </entry>
   

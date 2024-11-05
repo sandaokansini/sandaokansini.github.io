@@ -4,6 +4,25 @@
   
   
   <entry>
+    <title>gis距离分析</title>
+    <link href="/2024/11/05/gis%E8%B7%9D%E7%A6%BB%E5%88%86%E6%9E%90/"/>
+    <url>/2024/11/05/gis%E8%B7%9D%E7%A6%BB%E5%88%86%E6%9E%90/</url>
+    
+    <content type="html"><![CDATA[<h1>道路/河流/断层 POI</h1><h2 id="计算欧式距离时，单位问题">计算欧式距离时，单位问题</h2><p>将输入栅格数据（通常来自osm）坐标系转化<br>ArcToolbox-数据管理工具-投影与变换-要素-投影<br><a href="https://blog.csdn.net/weixin_45481399/article/details/142679030">解决方法</a></p><h2 id="距离计算">距离计算</h2><p>空间分析工具-距离-欧式距离<br>可在环境中选择计算范围<br><a href="https://blog.csdn.net/weixin_45481399/article/details/142685036"></a></p><h2 id="值提取至点，点要素图层属性表不显示值？">值提取至点，点要素图层属性表不显示值？</h2><p>用多值提取至点</p><p><a href="https://www.jianshu.com/p/3bca53f2334f">gmt文件转化为shp文件</a><br>ogr2ogr -lco encoding=UTF-8 -f “ESRI Shapefile” C:\temp\cnFaults.shp C:\temp\CN-faults-name.gmt</p>]]></content>
+    
+    
+    
+    <tags>
+      
+      <tag>gis</tag>
+      
+    </tags>
+    
+  </entry>
+  
+  
+  
+  <entry>
     <title>stacking集成</title>
     <link href="/2024/11/03/stacking%E9%9B%86%E6%88%90/"/>
     <url>/2024/11/03/stacking%E9%9B%86%E6%88%90/</url>

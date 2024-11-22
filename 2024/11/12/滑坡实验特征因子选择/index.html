@@ -1,0 +1,666 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#fff4d1">
+  <meta name="author" content="sandaokansini">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="VIF 去除多重共线性的5种方法 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596">
+<meta property="og:type" content="article">
+<meta property="og:title" content="滑坡实验|特征因子选择">
+<meta property="og:url" content="https://sandaokansini.github.io/2024/11/12/%E6%BB%91%E5%9D%A1%E5%AE%9E%E9%AA%8C%E7%89%B9%E5%BE%81%E5%9B%A0%E5%AD%90%E9%80%89%E6%8B%A9/index.html">
+<meta property="og:site_name" content="三刀砍死你">
+<meta property="og:description" content="VIF 去除多重共线性的5种方法 123456789101112131415161718192021222324252627282930313233343536373839404142434445464748495051525354555657585960616263646566676869707172737475767778798081828384858687888990919293949596">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2024-11-12T01:59:24.000Z">
+<meta property="article:modified_time" content="2024-11-15T12:45:07.228Z">
+<meta property="article:author" content="sandaokansini">
+<meta property="article:tag" content="代码">
+<meta property="article:tag" content="算法">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>滑坡实验|特征因子选择 - 三刀砍死你</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"sandaokansini.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"Plaintext"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>sandaokansini</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/image/chiikawa.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="滑坡实验|特征因子选择"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-11-12 09:59" pubdate>
+          2024年11月12日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          10 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">滑坡实验|特征因子选择</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <h1>VIF</h1>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/CnJiMmO2DzkX6E2E2rnKwQ">去除多重共线性的5种方法</a></p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br><span class="line">102</span><br><span class="line">103</span><br><span class="line">104</span><br><span class="line">105</span><br><span class="line">106</span><br><span class="line">107</span><br><span class="line">108</span><br><span class="line">109</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">from</span> statsmodels.regression.linear_model <span class="hljs-keyword">import</span> OLS<br><span class="hljs-keyword">import</span> statsmodels.api <span class="hljs-keyword">as</span> sm<br><span class="hljs-keyword">from</span> sklearn.linear_model <span class="hljs-keyword">import</span> LinearRegression<br><span class="hljs-keyword">from</span> statsmodels.stats.outliers_influence <span class="hljs-keyword">import</span> variance_inflation_factor<br><span class="hljs-keyword">import</span> matplotlib.pyplot <span class="hljs-keyword">as</span> plt<br><span class="hljs-keyword">from</span> math <span class="hljs-keyword">import</span> pi<br><br><span class="hljs-comment"># 使用 statsmodels 计算 VIF，基于相关系数</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">variance_inflation_factor_sm_corr</span>(<span class="hljs-params">exog, exog_idx</span>):<br>    k_vars = exog.shape[<span class="hljs-number">1</span>]  <span class="hljs-comment"># 特征总数</span><br>    exog = np.asarray(exog)<br>    x_i = exog[:, exog_idx]  <span class="hljs-comment"># 当前特征</span><br>    mask = np.arange(k_vars) != exog_idx  <span class="hljs-comment"># 掩码，选择非当前特征</span><br>    x_noti = exog[:, mask]  <span class="hljs-comment"># 其他特征</span><br>    r_squared_i = OLS(x_i, sm.add_constant(x_noti)).fit().rsquared  <span class="hljs-comment"># R²</span><br>    vif = <span class="hljs-number">1.</span> / (<span class="hljs-number">1.</span> - r_squared_i)  <span class="hljs-comment"># VIF计算</span><br>    <span class="hljs-keyword">return</span> vif<br><br><br><span class="hljs-comment"># 使用 sklearn 计算 VIF</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">variance_inflation_factor_sklearn</span>(<span class="hljs-params">exog, exog_idx</span>):<br>    k_vars = exog.shape[<span class="hljs-number">1</span>]<br>    exog = np.asarray(exog)<br>    x_i = exog[:, exog_idx]<br>    mask = np.arange(k_vars) != exog_idx<br>    x_noti = exog[:, mask]<br>    r_squared_i = LinearRegression(fit_intercept=<span class="hljs-literal">True</span>).fit(x_noti, x_i).score(x_noti, x_i)<br>    vif = <span class="hljs-number">1.</span> / (<span class="hljs-number">1.</span> - r_squared_i)<br>    <span class="hljs-keyword">return</span> vif<br><br><br><span class="hljs-comment"># 计算数据集的 VIF，支持多种计算方法</span><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">calc_vif</span>(<span class="hljs-params">df, method=<span class="hljs-string">&#x27;all&#x27;</span></span>):<br>    vif_data = pd.DataFrame()  <span class="hljs-comment"># 保存 VIF 数据</span><br>    vif_data[<span class="hljs-string">&quot;feature&quot;</span>] = df.columns<br><br>    <span class="hljs-keyword">if</span> method == <span class="hljs-string">&#x27;sm_corr&#x27;</span>:  <span class="hljs-comment"># 使用 statsmodels 相关系数方法</span><br>        vif_data[<span class="hljs-string">&quot;VIF&quot;</span>] = [variance_inflation_factor_sm_corr(df.values, i)<br>                           <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(df.columns))]<br>    <span class="hljs-keyword">elif</span> method == <span class="hljs-string">&#x27;sklearn&#x27;</span>:  <span class="hljs-comment"># 使用 sklearn</span><br>        vif_data[<span class="hljs-string">&quot;VIF&quot;</span>] = [variance_inflation_factor_sklearn(df.values, i)<br>                           <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(df.columns))]<br>    <span class="hljs-keyword">elif</span> method == <span class="hljs-string">&#x27;sm&#x27;</span>:  <span class="hljs-comment"># 使用 statsmodels OLS</span><br>        vif_data[<span class="hljs-string">&quot;VIF&quot;</span>] = [variance_inflation_factor(df.values, i)<br>                           <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(df.columns))]<br>    <span class="hljs-keyword">else</span>:  <span class="hljs-comment"># 默认计算所有方法的 VIF</span><br>        vif_data[<span class="hljs-string">&quot;VIF_sm_corr&quot;</span>] = [variance_inflation_factor_sm_corr(df.values, i)<br>                                   <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(df.columns))]<br>        vif_data[<span class="hljs-string">&quot;VIF_sklearn&quot;</span>] = [variance_inflation_factor_sklearn(df.values, i)<br>                                   <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(df.columns))]<br>        vif_data[<span class="hljs-string">&quot;VIF_sm&quot;</span>] = [variance_inflation_factor(df.values, i)<br>                              <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-built_in">len</span>(df.columns))]<br><br>    <span class="hljs-keyword">return</span> vif_data<br><br><br><span class="hljs-comment"># 读取数据</span><br>df1 = pd.read_excel(<span class="hljs-string">&#x27;cluster0.xlsx&#x27;</span>)<br>df2 = pd.read_excel(<span class="hljs-string">&#x27;cluster1.xlsx&#x27;</span>)<br><br><br>df = [df1, df2]<br>i = <span class="hljs-number">0</span><br><span class="hljs-keyword">for</span> df <span class="hljs-keyword">in</span> df:<br>    num_df = df.drop(columns=[<span class="hljs-string">&#x27;class&#x27;</span>, <span class="hljs-string">&#x27;cluster&#x27;</span>, <span class="hljs-string">&#x27;X&#x27;</span>, <span class="hljs-string">&#x27;Y&#x27;</span>])<br>    result = calc_vif(num_df, method=<span class="hljs-string">&#x27;all&#x27;</span>)<br>    <span class="hljs-built_in">print</span>(result)<br><br><br>    <span class="hljs-comment"># 假设 VIF 结果已保存在 result DataFrame 中，选择 &quot;feature&quot; 和一个 VIF 列（如 &quot;VIF_sm_corr&quot;）用于绘制</span><br>    vif_data = result[[<span class="hljs-string">&#x27;feature&#x27;</span>, <span class="hljs-string">&#x27;VIF_sm_corr&#x27;</span>]]<br><br>    <span class="hljs-comment"># 准备数据</span><br>    labels = vif_data[<span class="hljs-string">&#x27;feature&#x27;</span>].values  <span class="hljs-comment"># 特征名称</span><br>    stats = vif_data[<span class="hljs-string">&#x27;VIF_sm_corr&#x27;</span>].values  <span class="hljs-comment"># VIF 值</span><br><br>    <span class="hljs-comment"># 雷达图设置</span><br>    num_vars = <span class="hljs-built_in">len</span>(labels)<br><br>    <span class="hljs-comment"># 计算每个特征的角度</span><br>    angles = np.linspace(<span class="hljs-number">0</span>, <span class="hljs-number">2</span> * np.pi, num_vars, endpoint=<span class="hljs-literal">False</span>).tolist()<br><br>    <span class="hljs-comment"># 为了使雷达图闭合，连接起点</span><br>    stats = np.concatenate((stats, [stats[<span class="hljs-number">0</span>]]))<br>    angles += angles[:<span class="hljs-number">1</span>]<br><br>    <span class="hljs-comment"># 创建雷达图</span><br>    fig, ax = plt.subplots(figsize=(<span class="hljs-number">8</span>, <span class="hljs-number">8</span>), subplot_kw=<span class="hljs-built_in">dict</span>(polar=<span class="hljs-literal">True</span>))<br><br>    <span class="hljs-comment"># 绘制填充区域和边界线</span><br>    ax.fill(angles, stats, color=<span class="hljs-string">&#x27;red&#x27;</span>, alpha=<span class="hljs-number">0.25</span>)<br>    ax.plot(angles, stats, color=<span class="hljs-string">&#x27;red&#x27;</span>, linewidth=<span class="hljs-number">2</span>)<br><br>    <span class="hljs-comment"># 设置特征名称（每个轴的标签）</span><br>    ax.set_xticks(angles[:-<span class="hljs-number">1</span>])<br>    ax.set_xticklabels(labels, fontsize=<span class="hljs-number">12</span>)<br><br>    <span class="hljs-comment"># 设置径向坐标的标签（显示每个VIF值的大小）</span><br>    ax.set_yticks(<span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-built_in">int</span>(<span class="hljs-built_in">max</span>(stats)) + <span class="hljs-number">2</span>))<br>    ax.set_yticklabels(<span class="hljs-built_in">range</span>(<span class="hljs-number">1</span>, <span class="hljs-built_in">int</span>(<span class="hljs-built_in">max</span>(stats)) + <span class="hljs-number">2</span>), color=<span class="hljs-string">&quot;grey&quot;</span>, size=<span class="hljs-number">10</span>)<br><br>    <span class="hljs-comment"># 添加标题</span><br>    plt.title(<span class="hljs-string">f&#x27;VIF cluster<span class="hljs-subst">&#123;i&#125;</span>&#x27;</span>, size=<span class="hljs-number">15</span>, color=<span class="hljs-string">&#x27;black&#x27;</span>, y=<span class="hljs-number">1.1</span>)<br>    i +=<span class="hljs-number">1</span><br><span class="hljs-comment"># 显示图形</span><br>plt.show()<br><br></code></pre></td></tr></table></figure>
+<h1>Boruta算法</h1>
+<p><a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/UktBNhErmS4HdfKsEDYcww">机器学习|特征选择利器：森林之神(Boruta)</a><br>
+<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/wX1B_2wxp3kUVjQKQE5XLw">特征选择：基于随机森林的Boruta算法应用</a><br>
+<a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/rp1qDlACzvvtdQbdEL6Lbg">特征选择：Lasso和Boruta算法的结合应用</a></p>
+<figure class="highlight routeros"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br><span class="line">96</span><br><span class="line">97</span><br><span class="line">98</span><br><span class="line">99</span><br><span class="line">100</span><br><span class="line">101</span><br></pre></td><td class="code"><pre><code class="hljs routeros">import seaborn as sns<br>import pandas as pd<br>import numpy as np<br>import matplotlib.pyplot as plt<br><span class="hljs-keyword">from</span> sklearn.model_selection import train_test_split<br><br><br>df1 = pd.read_excel(<span class="hljs-string">&#x27;cluster1.xlsx&#x27;</span>)<br>df0 = pd.read_excel(<span class="hljs-string">&#x27;cluster0.xlsx&#x27;</span>)<br>df = [df0 , df1]<br><span class="hljs-attribute">j</span>=0<br><span class="hljs-keyword">for</span> df <span class="hljs-keyword">in</span> df:<br>    # 划分特征和目标变量<br>    X = df.drop([<span class="hljs-string">&#x27;class&#x27;</span>, <span class="hljs-string">&#x27;cluster&#x27;</span>, <span class="hljs-string">&#x27;X&#x27;</span>, <span class="hljs-string">&#x27;Y&#x27;</span>], <span class="hljs-attribute">axis</span>=1)<br>    y = df[<span class="hljs-string">&#x27;class&#x27;</span>]<br>    # 划分训练集和测试集<br>    X_train, X_test, y_train, y_test = train_test_split(X, y, <span class="hljs-attribute">test_size</span>=0.2,<br>                                                        <span class="hljs-attribute">random_state</span>=42, <span class="hljs-attribute">stratify</span>=df[<span class="hljs-string">&#x27;class&#x27;</span>])<br>    df.head()<br><br><br>    <span class="hljs-keyword">from</span> sklearn.ensemble import RandomForestClassifier<br>    <span class="hljs-keyword">from</span> boruta import BorutaPy<br>    <span class="hljs-string">&#x27;&#x27;</span><span class="hljs-string">&#x27;</span><br><span class="hljs-string">    多次运行Boruta算法以评估特征排名稳定性</span><br><span class="hljs-string">    &#x27;</span><span class="hljs-string">&#x27;&#x27;</span><br>    # 初始化随机森林模型<br>    rf = RandomForestClassifier(<span class="hljs-attribute">n_jobs</span>=-1, <span class="hljs-attribute">class_weight</span>=<span class="hljs-string">&#x27;balanced&#x27;</span>, <span class="hljs-attribute">max_depth</span>=5)<br><br>    # 初始化存储特征排名的 DataFrame<br>    ranking_df = pd.DataFrame(<span class="hljs-attribute">index</span>=range(1, 2), <span class="hljs-attribute">columns</span>=X_train.columns)<br>    support_df = pd.DataFrame(<span class="hljs-attribute">index</span>=range(1, 2), <span class="hljs-attribute">columns</span>=X_train.columns)<br>    # 运行 Boruta 20 次<br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> range(1):<br>        # <span class="hljs-built_in">print</span>(f<span class="hljs-string">&quot;Iteration &#123;i + 1&#125;&quot;</span>)<br><br>        # 初始化Boruta特征选择器<br>        boruta_selector = BorutaPy(rf, <span class="hljs-attribute">n_estimators</span>=<span class="hljs-string">&#x27;auto&#x27;</span>, <span class="hljs-attribute">verbose</span>=2, <span class="hljs-attribute">random_state</span>=i, <span class="hljs-attribute">max_iter</span>=50)<br><br>        # 对训练数据进行特征选择<br>        boruta_selector.fit(X_train.values, y_train.values)<br><br>        # 获取特征排名<br>        feature_ranks = boruta_selector.ranking_<br>        feature_support = boruta_selector.support_<br><br>        # 将特征排名保存到 DataFrame 中<br>        ranking_df.loc[i + 1] = feature_ranks<br>        support_df.loc[i + 1] = feature_support<br>    ranking_df.to_csv(f<span class="hljs-string">&#x27;cluster-&#123;i&#125;-boruta-feature-ranking.csv&#x27;</span>, <span class="hljs-attribute">index</span>=<span class="hljs-literal">False</span>)<br>    support_df.to_csv(f<span class="hljs-string">&#x27;cluster-&#123;i&#125;-boruta-feature-support.csv&#x27;</span>, <span class="hljs-attribute">index</span>=<span class="hljs-literal">False</span>)<br>    #水平柱状图#<br><br>    numeric_ranking_df = ranking_df.apply(pd.to_numeric, <span class="hljs-attribute">errors</span>=<span class="hljs-string">&#x27;coerce&#x27;</span>)<br><br>    # 计算每个特征的中位数<br>    median_values = 1/numeric_ranking_df.median()<br><br>    # 根据中位数对特征进行排序<br>    sorted_median_values = median_values.sort_values(<span class="hljs-attribute">ascending</span>=<span class="hljs-literal">False</span>)  # 值越大，特征越重要<br><br>    # 创建水平柱状图<br>    plt.figure(figsize=(6, 5))<br>    sns.barplot(<span class="hljs-attribute">x</span>=sorted_median_values.values, <span class="hljs-attribute">y</span>=sorted_median_values.index, <span class="hljs-attribute">palette</span>=<span class="hljs-string">&quot;viridis&quot;</span>)<br><br>    # 设置图表标题和标签<br>    plt.title(f<span class="hljs-string">&quot;Cluster &#123;j&#125; Feature Importance by Boruta (Horizontal Bar Chart)&quot;</span>, <span class="hljs-attribute">fontsize</span>=10)<br>    plt.xlabel(<span class="hljs-string">&quot;Feature Importance (1 / Median Ranking))&quot;</span>, <span class="hljs-attribute">fontsize</span>=10)<br>    plt.ylabel(<span class="hljs-string">&quot;Features&quot;</span>, <span class="hljs-attribute">fontsize</span>=10)<br>    j = j+1<br><br><br><span class="hljs-comment"># 显示图表</span><br>plt.tight_layout()<br>plt.show()<br><br><span class="hljs-string">&#x27;&#x27;</span><span class="hljs-string">&#x27;</span><br><span class="hljs-string">可视化排名稳定性</span><br><span class="hljs-string">&#x27;</span><span class="hljs-string">&#x27;&#x27;</span><br><span class="hljs-comment"># # 确保数据集中只有数值列</span><br><span class="hljs-comment"># numeric_ranking_df = ranking_df.apply(pd.to_numeric, errors=&#x27;coerce&#x27;)</span><br><span class="hljs-comment">#</span><br><span class="hljs-comment"># # 计算每个特征的中位数</span><br><span class="hljs-comment"># median_values = numeric_ranking_df.median()</span><br><span class="hljs-comment">#</span><br><span class="hljs-comment"># # 根据中位数对列进行排序</span><br><span class="hljs-comment"># sorted_columns = median_values.sort_values().index</span><br><span class="hljs-comment">#</span><br><span class="hljs-comment"># # 设置绘图风格</span><br><span class="hljs-comment"># plt.figure(figsize=(15, 8))</span><br><span class="hljs-comment"># sns.set(style=&quot;whitegrid&quot;)</span><br><span class="hljs-comment">#</span><br><span class="hljs-comment"># # 绘制箱线图</span><br><span class="hljs-comment"># sns.boxplot(data=numeric_ranking_df[sorted_columns], palette=&quot;Greens&quot;)</span><br><span class="hljs-comment">#</span><br><span class="hljs-comment"># plt.xticks(rotation=90)</span><br><span class="hljs-comment"># plt.title(&quot;Sorted Feature Ranking Distribution by Boruta&quot;, fontsize=16)</span><br><span class="hljs-comment"># plt.xlabel(&quot;Attributes&quot;, fontsize=14)</span><br><span class="hljs-comment"># plt.ylabel(&quot;Importance&quot;, fontsize=14)</span><br><span class="hljs-comment"># plt.tight_layout()</span><br><span class="hljs-comment"># plt.show()</span><br></code></pre></td></tr></table></figure>
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E4%BB%A3%E7%A0%81/" class="print-no-link">#代码</a>
+      
+        <a href="/tags/%E7%AE%97%E6%B3%95/" class="print-no-link">#算法</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>滑坡实验|特征因子选择</div>
+      <div>https://sandaokansini.github.io/2024/11/12/滑坡实验特征因子选择/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>sandaokansini</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年11月12日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/11/16/%E7%AE%97%E6%B3%95%E8%AF%BE%E7%AC%94%E8%AE%B0/" title="算法课笔记">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">算法课笔记</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/11/07/%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E8%9E%8D%E5%90%88%E6%A8%A1%E5%9E%8B/" title="机器学习|融合模型">
+                        <span class="hidden-mobile">机器学习|融合模型</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://sandaokansini.github.io/2024/11/12/%E6%BB%91%E5%9D%A1%E5%AE%9E%E9%AA%8C%E7%89%B9%E5%BE%81%E5%9B%A0%E5%AD%90%E9%80%89%E6%8B%A9/';
+          this.page.identifier = '/2024/11/12/%E6%BB%91%E5%9D%A1%E5%AE%9E%E9%AA%8C%E7%89%B9%E5%BE%81%E5%9B%A0%E5%AD%90%E9%80%89%E6%8B%A9/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'sandaokansini' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

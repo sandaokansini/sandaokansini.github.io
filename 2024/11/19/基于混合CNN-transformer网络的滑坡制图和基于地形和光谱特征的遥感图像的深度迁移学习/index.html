@@ -1,0 +1,712 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=dark>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#fff4d1">
+  <meta name="author" content="sandaokansini">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="所属期刊：International Journal of Applied Earth Observation and Geoinformation 原文链接 论文摘要 山泥倾泻经常造成严重的财产损失和人员伤亡。因此，拥有快速准确的滑坡测绘 （LM） 以支持震后滑坡损失评估和紧急救援工作至关重要。近年来，关于使用遥感图像 （RSI） 的自动 LM 方法的应用进行了许多研究。然而，由于滑坡之间特征和">
+<meta property="og:type" content="article">
+<meta property="og:title" content="文献笔记|基于混合CNN-transformer网络的滑坡制图和基于地形和光谱特征的遥感图像的深度迁移学习">
+<meta property="og:url" content="https://sandaokansini.github.io/2024/11/19/%E5%9F%BA%E4%BA%8E%E6%B7%B7%E5%90%88CNN-transformer%E7%BD%91%E7%BB%9C%E7%9A%84%E6%BB%91%E5%9D%A1%E5%88%B6%E5%9B%BE%E5%92%8C%E5%9F%BA%E4%BA%8E%E5%9C%B0%E5%BD%A2%E5%92%8C%E5%85%89%E8%B0%B1%E7%89%B9%E5%BE%81%E7%9A%84%E9%81%A5%E6%84%9F%E5%9B%BE%E5%83%8F%E7%9A%84%E6%B7%B1%E5%BA%A6%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0/index.html">
+<meta property="og:site_name" content="三刀砍死你">
+<meta property="og:description" content="所属期刊：International Journal of Applied Earth Observation and Geoinformation 原文链接 论文摘要 山泥倾泻经常造成严重的财产损失和人员伤亡。因此，拥有快速准确的滑坡测绘 （LM） 以支持震后滑坡损失评估和紧急救援工作至关重要。近年来，关于使用遥感图像 （RSI） 的自动 LM 方法的应用进行了许多研究。然而，由于滑坡之间特征和">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sandaokansini.github.io/image/11191.jpg">
+<meta property="og:image" content="https://sandaokansini.github.io/image/1-s2.0-S1569843223004363-gr5.jpg">
+<meta property="article:published_time" content="2024-11-19T03:31:45.000Z">
+<meta property="article:modified_time" content="2024-11-19T05:03:08.693Z">
+<meta property="article:author" content="sandaokansini">
+<meta property="article:tag" content="文献">
+<meta property="article:tag" content="滑坡">
+<meta property="article:tag" content="迁移学习">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sandaokansini.github.io/image/11191.jpg">
+  
+  
+  
+  <title>文献笔记|基于混合CNN-transformer网络的滑坡制图和基于地形和光谱特征的遥感图像的深度迁移学习 - 三刀砍死你</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"sandaokansini.github.io","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"Plaintext"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":false,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":null,"app_key":null,"server_url":null,"path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+
+  
+<meta name="generator" content="Hexo 7.3.0"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>sandaokansini</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/image/chiikawa.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="文献笔记|基于混合CNN-transformer网络的滑坡制图和基于地形和光谱特征的遥感图像的深度迁移学习"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2024-11-19 11:31" pubdate>
+          2024年11月19日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">文献笔记|基于混合CNN-transformer网络的滑坡制图和基于地形和光谱特征的遥感图像的深度迁移学习</h1>
+            
+            
+              <div class="markdown-body">
+                
+                <p>所属期刊：International Journal of Applied Earth Observation and Geoinformation<br>
+<a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/pii/S1569843223004363?via%3Dihub">原文链接</a></p>
+<h2 id="论文摘要">论文摘要</h2>
+<p>山泥倾泻经常造成严重的财产损失和人员伤亡。因此，拥有快速准确的滑坡测绘 （LM） 以支持震后滑坡损失评估和紧急救援工作至关重要。近年来，关于使用遥感图像 （RSI） 的自动 LM 方法的应用进行了许多研究。然而，由于滑坡之间特征和尺度差异大，以及光学 RSI 中不同地面物体之间的相似性，现有方法在准确区分滑坡方面面临挑战。在这里，我们提出了一种称为 SCDUNet++ 的语义分割模型，它结合了卷积神经网络 （CNN） 和 transformer 的优点，以增强对滑坡特征的区分和提取。然后，我们使用 Sentinel-2 和 NASADEM 数据构建了泸定和九寨沟地震区多通道滑坡数据集。我们评估了 SCDUNet++ 在此数据集上的性能。结果表明，SCDUNet++ 可以更有效地提取和融合光谱和地形信息。与其他最先进的模型相比，SCDUNet++ 在所有四个测试领域都获得了最高的 IoU 和 F1 分数。此外，经过知识转移和微调，这些模型在绘制九寨沟地区滑坡方面取得了显著改进。与直接预测相比，实施深度迁移学习 （DTL） 后，DeepLabv3+、Segformer、TransUNet、SwinUNet、STUNet、UNet、UNet++ 和 SCDUNet++ 八个模型显示出 IoU 从 8.33% 到 27.5% 和 F1 从 6.58% 到 23.67% 的改进。这一发现突出了在数据匮乏地区使用 DTL 进行跨域 LM 的重要实用性。</p>
+<h2 id="存在的问题">存在的问题</h2>
+<p>通过视觉解释和实地调查进行的传统滑坡测绘 （LM） 是劳动密集型和耗时的，由于人类经验和判断的差异，存在不一致和遗漏的风险<br>
+机器学习方法仍然需要一些手动特征提取和解释规则设计，并且设计中算法改进的潜力是有限的<br>
+CNN 的归纳偏差限制了其提取全球信息的能力<br>
+transformer 结构所依赖的自注意机制的时间和空间复杂性在输入长度上是二次的。这在处理高分辨率图像时带来了挑战<br>
+Swin Transformer通过多尺度建模构建了类似于 CNN 的分层特征，并使用移位窗口方法降低了自注意的计算成本。Swin Transformer 被用作提取特征的骨干，以绘制汶川地震引发的滑坡，并取得了最佳性能。此外，研究人员还使用 Swin Transformer 基于滑坡特征构建 LM 网络，但他们都只使用 Swin Transformer 来提取特征，而没有结合 CNN 的优势<br>
+LM模型直接在目标区域进行训练可能会遇到 RSI 过度混浊和可用数据不足等问题<br>
+稳健深度迁移学习 （DTL） 对使用少量数据的跨域 LM 的可行性尚未得到证实<br>
+现有的研究缺乏一个合适的模型来充分利用滑坡的光谱和地形特征知识</p>
+<h2 id="主要贡献">主要贡献</h2>
+<p>(1)为 LM 设计了一个名为 SCDUNet++ 的模型。构建了全局局部特征提取 （GLFE） 模块以提取更准确可靠的特征，并构建了详细空间光谱聚合 （DSSA） 模块以提取滑坡的多尺度特征、空间特征和光谱特征。该模型的可靠性和泛化性在四个方面进行了评估，表明我们的模型优于其他模型，包括 FCN、DeepLabv3+、Segformer、TransUNet、SwinUNet、STUNet、UNet 和 UNet++<br>
+(2)我们使用在源域中训练的模型在目标域中使用少量数据执行 LM。实验表明，DTL 后的映射结果显著优于直接预测的结果。在需要准确 LM 的情况下，这一发现具有重要意义，尤其是当目标区域中的可用数据有限时<br>
+(3)在这项研究中，超过 3000 平方公里对泸定和九寨沟滑坡清单图进行解释生成，并为LM制作了多通道滑坡数据集。该数据集有助于证明，结合相关的光谱和地形信息可以产生更准确的结果</p>
+<h2 id="研究方法">研究方法</h2>
+<h3 id="数据准备">数据准备</h3>
+<p><strong>Sentinel-2 多光谱数据</strong>：<br>
+<a target="_blank" rel="noopener" href="https://scihub.copernicus.eu/dhus/#/home">https://scihub.copernicus.eu/dhus/#/home</a> 下载，并使用 Sen2Cor 转换为大气底层产品插件，用于大气顶部产品的大气校正。然后使用 SNAP 中的 Sen2Res插件将所有波段处理到 10 m 分辨率<br>
+坐标系：WGS 1984 UTM Zone 48 N<br>
+使用 Sentinel-2 波段生成了四个光谱指数：归一化差值植被指数 （NDVI）、归一化差值水分指数 （NDWI）、亮度指数 （BI）和裸土指数 （BSI）<br>
+计算公式见原文<br>
+<strong>NASADEM 数据和地形因素</strong><br>
+NASADEM 数据是从 <a target="_blank" rel="noopener" href="https://lpdaac.usgs.gov/products/nasadem_hgtv001/">https://lpdaac.usgs.gov/products/nasadem_hgtv001/</a> 获得，使用 Python 的线性插值重新采样至 10 m 分辨率。坡度、坡向、曲率、山体阴影和地形湿度指数 （TWI） 来自数字高程模型 （DEM） 数据<br>
+<strong>滑坡清单和数据集</strong><br>
+首先，将来自 13 个 Sentinel-2 波段、4 个 SIF 和 6 个 TF 的数据堆叠在一起，创建一个 23 通道的数据。然后使用最小-最大标准化对每个数据层进行标准化。其次，将数据分为 128 × 128 个大小，无重叠。泸定地区获得 128 × 128 × 23 形状的 1800 个数据，而在九寨沟地区获得 40 个相同形状的数据。最后，将数据以 HDF5 格式存储为数据集。</p>
+<h3 id="方法">方法</h3>
+<p><strong>1、模型架构</strong><br>
+SCDUNet++ 的整体架构如图所示。该模型中使用的编码器是 GLFE 模块，它是一个混合 CNN-transformer 模块。同时，DSSA Block 旨在对光谱和空间特征进行更精细的提取。此外，使用具有密集跳跃连接 （DSC） 的嵌套解码器来恢复每个阶段特征的分辨率。最后，对每个阶段的特征进行加权和融合，得到最终结果。实现代码将在 <a target="_blank" rel="noopener" href="https://github.com/lewuu/SCDUNetPP">https://github.com/lewuu/SCDUNetPP</a> 上提供<br>
+<img src="/image/11191.jpg" srcset="/img/loading.gif" lazyload alt="（a） SCDUNet++;（b） 全局局部特征提取 （GLFE） 块;（c） 嵌套解码器;（d） 密集跳跃连接 （DSC）;（e） 详细空间光谱聚合 （DSSA） 模块"><br>
+全局局部特征提取块<br>
+详细的空间光谱 Aggregation 模块</p>
+<p><strong>2、深度迁移学习方法</strong><br>
+采用了一种简单的基于模型的 DTL 方法来评估 DTL 提高 LM 和我们模型的传输性能的可行性，如图 5 所示。来自源域模型的某些层的参数将传输到目标模型，从而使目标模型能够从源域中学习知识。随后，可以使用少量目标数据对目标模型进行微调，以获得适用于目标域的模型<br>
+<img src="/image/1-s2.0-S1569843223004363-gr5.jpg" srcset="/img/loading.gif" lazyload alt="一种基于网络的深度迁移学习 （DTL） 方法"></p>
+<p><strong>3、 实验设置</strong><br>
+损失函数：Lovász-Softmax 损失和Tversky 损失被合并为平衡的 Lovász-softmax Tversky 损失<br>
+评估指标：精确度、召回率、F1、IoU、MIoU 和 MCC<br>
+实现细节</p>
+<h2 id="主要结论">主要结论</h2>
+<p>快速准确地绘制滑坡地图是一项具有挑战性的任务。为了验证使用多通道数据对 LM 的语义分割模型的有效性，我们在泸定和九寨沟地震区进行了一项研究。可以得出以下结论：<br>
+(1)向多光谱数据添加光谱和地形信息对 LM 有利，地形信息起着更重要的作用。添加 TF 和 SIF 后，模型的 IoU 提高了 11.4% 至 17.37%，F1 的 IoU 提高了 10.76% 至 15.39%。<br>
+(2)与其他八个模型（包括 FCN、DeepLabv3+、Segformer、TransUNet、SwinUNet、STUNet、UNet 和 UNet++）相比，SCDUNet++ 的 IoU 和 F1 分别提高了 1.91% 至 24.42% 和 1.26% 至 18.54%。这是因为 SCDUNet++ 能够提取更全面的滑坡多尺度特征、空间特征和光谱特征。这样可以准确提取更多小型滑坡和更好的边界。此外，它可以更准确地区分山体滑坡和具有相似特征的物体，例如泥泞的河流、岩石和山路。<br>
+(3)实验中使用的所有模型在多通道数据上都取得了良好的 LM 结果。但考虑到防灾减灾的需要，建议使用 STUNet、UNet++ 和 SCDUNet++，因为它们可以实现更高的召回率。但是，STUNet 的训练和测试成本较高，而 SCDUNet++ 在全面性方面是最佳选择。<br>
+(4)当将训练后的模型应用于其他数据匮乏的区域时，与直接预测相比，可以以较低的成本对模型进行微调，以实现显著的性能改进。DTL 后的 8 款车型的 IoU 提高了 8.33% 至 27.5%，F1 的 IoU 提高了 6.58% 至 23.67%。此外，借助可不断扩展的源域数据和训练后的模型，可以在地震后获取目标区域的数据后快速生成目标区域的滑坡清单图。这具有很高的实际应用价值。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%96%87%E7%8C%AE/" class="print-no-link">#文献</a>
+      
+        <a href="/tags/%E6%BB%91%E5%9D%A1/" class="print-no-link">#滑坡</a>
+      
+        <a href="/tags/%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0/" class="print-no-link">#迁移学习</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>文献笔记|基于混合CNN-transformer网络的滑坡制图和基于地形和光谱特征的遥感图像的深度迁移学习</div>
+      <div>https://sandaokansini.github.io/2024/11/19/基于混合CNN-transformer网络的滑坡制图和基于地形和光谱特征的遥感图像的深度迁移学习/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>sandaokansini</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2024年11月19日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2024/11/19/%E6%BB%91%E5%9D%A1%E5%AE%9E%E9%AA%8C%E6%88%91%E7%9A%84%E9%97%AE%E9%A2%98/" title="滑坡实验|我的问题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">滑坡实验|我的问题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2024/11/16/%E7%AE%97%E6%B3%95%E8%AF%BE%E7%AC%94%E8%AE%B0/" title="算法课笔记">
+                        <span class="hidden-mobile">算法课笔记</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div class="disqus" style="width:100%">
+    <div id="disqus_thread"></div>
+    
+      <script type="text/javascript">
+        var disqus_config = function() {
+          this.page.url = 'https://sandaokansini.github.io/2024/11/19/%E5%9F%BA%E4%BA%8E%E6%B7%B7%E5%90%88CNN-transformer%E7%BD%91%E7%BB%9C%E7%9A%84%E6%BB%91%E5%9D%A1%E5%88%B6%E5%9B%BE%E5%92%8C%E5%9F%BA%E4%BA%8E%E5%9C%B0%E5%BD%A2%E5%92%8C%E5%85%89%E8%B0%B1%E7%89%B9%E5%BE%81%E7%9A%84%E9%81%A5%E6%84%9F%E5%9B%BE%E5%83%8F%E7%9A%84%E6%B7%B1%E5%BA%A6%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0/';
+          this.page.identifier = '/2024/11/19/%E5%9F%BA%E4%BA%8E%E6%B7%B7%E5%90%88CNN-transformer%E7%BD%91%E7%BB%9C%E7%9A%84%E6%BB%91%E5%9D%A1%E5%88%B6%E5%9B%BE%E5%92%8C%E5%9F%BA%E4%BA%8E%E5%9C%B0%E5%BD%A2%E5%92%8C%E5%85%89%E8%B0%B1%E7%89%B9%E5%BE%81%E7%9A%84%E9%81%A5%E6%84%9F%E5%9B%BE%E5%83%8F%E7%9A%84%E6%B7%B1%E5%BA%A6%E8%BF%81%E7%A7%BB%E5%AD%A6%E4%B9%A0/';
+        };
+        Fluid.utils.loadComments('#disqus_thread', function() {
+          var d = document, s = d.createElement('script');
+          s.src = '//' + 'sandaokansini' + '.disqus.com/embed.js';
+          s.setAttribute('data-timestamp', new Date());
+          (d.head || d.body).appendChild(s);
+        });
+      </script>
+    
+    <noscript>Please enable JavaScript to view the comments</noscript>
+  </div>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

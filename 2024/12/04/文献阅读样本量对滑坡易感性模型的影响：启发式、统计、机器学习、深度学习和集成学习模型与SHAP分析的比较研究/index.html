@@ -19,19 +19,22 @@
   <meta name="author" content="sandaokansini">
   <meta name="keywords" content="">
   
-    <meta name="description" content="原文链接 推荐链接 内容概述 通过比较启发式、统计、机器学习和集成学习模型（层次分析过程（AHP）、频率比（FR）、逻辑回归（LR）、基于Keras的深度学习（KBDL）、XGBoost和LightGBM）在六种不同样本大小（100%、90%、75%、50%、25%和10%）下的表现。结果显示，在各种样本大小下，XGBoost和LightGBM始终优于其他模型。LR和KBDL模型紧随其后，而FR模">
+    <meta name="description" content="原文链接 推荐链接 内容概述 样本量、时变特征因子影响验证 通过比较启发式、统计、机器学习和集成学习模型（层次分析过程（AHP）、频率比（FR）、逻辑回归（LR）、基于Keras的深度学习（KBDL）、XGBoost和LightGBM）在六种不同样本大小（100%、90%、75%、50%、25%和10%）下的表现。结果显示，在各种样本大小下，XGBoost和LightGBM始终优于其他模型。LR和">
 <meta property="og:type" content="article">
 <meta property="og:title" content="文献阅读|样本量对滑坡易感性模型的影响：启发式、统计、机器学习、深度学习和集成学习模型与SHAP分析的比较研究">
 <meta property="og:url" content="https://sandaokansini.github.io/2024/12/04/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E6%A0%B7%E6%9C%AC%E9%87%8F%E5%AF%B9%E6%BB%91%E5%9D%A1%E6%98%93%E6%84%9F%E6%80%A7%E6%A8%A1%E5%9E%8B%E7%9A%84%E5%BD%B1%E5%93%8D%EF%BC%9A%E5%90%AF%E5%8F%91%E5%BC%8F%E3%80%81%E7%BB%9F%E8%AE%A1%E3%80%81%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0%E3%80%81%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%92%8C%E9%9B%86%E6%88%90%E5%AD%A6%E4%B9%A0%E6%A8%A1%E5%9E%8B%E4%B8%8ESHAP%E5%88%86%E6%9E%90%E7%9A%84%E6%AF%94%E8%BE%83%E7%A0%94%E7%A9%B6/index.html">
 <meta property="og:site_name" content="三刀砍死你">
-<meta property="og:description" content="原文链接 推荐链接 内容概述 通过比较启发式、统计、机器学习和集成学习模型（层次分析过程（AHP）、频率比（FR）、逻辑回归（LR）、基于Keras的深度学习（KBDL）、XGBoost和LightGBM）在六种不同样本大小（100%、90%、75%、50%、25%和10%）下的表现。结果显示，在各种样本大小下，XGBoost和LightGBM始终优于其他模型。LR和KBDL模型紧随其后，而FR模">
+<meta property="og:description" content="原文链接 推荐链接 内容概述 样本量、时变特征因子影响验证 通过比较启发式、统计、机器学习和集成学习模型（层次分析过程（AHP）、频率比（FR）、逻辑回归（LR）、基于Keras的深度学习（KBDL）、XGBoost和LightGBM）在六种不同样本大小（100%、90%、75%、50%、25%和10%）下的表现。结果显示，在各种样本大小下，XGBoost和LightGBM始终优于其他模型。LR和">
 <meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://sandaokansini.github.io/image/1-s2.0-S0098300424002061-gr2.jpg">
+<meta property="og:image" content="https://sandaokansini.github.io/image/1-s2.0-S0098300424002061-gr14.jpg">
 <meta property="article:published_time" content="2024-12-04T02:19:21.000Z">
-<meta property="article:modified_time" content="2024-12-06T08:18:15.092Z">
+<meta property="article:modified_time" content="2024-12-07T08:49:29.664Z">
 <meta property="article:author" content="sandaokansini">
 <meta property="article:tag" content="文献">
 <meta property="article:tag" content="滑坡">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sandaokansini.github.io/image/1-s2.0-S0098300424002061-gr2.jpg">
   
   
   
@@ -46,6 +49,8 @@
   <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/KaTeX/0.16.2/katex.min.css" />
 
 
 
@@ -224,7 +229,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          745 字
+          2.3k 字
         
       </span>
     
@@ -235,7 +240,7 @@
         
         
         
-          7 分钟
+          20 分钟
         
       </span>
     
@@ -280,8 +285,10 @@
                 <p><a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/pii/S0098300424002061">原文链接</a><br>
 <a target="_blank" rel="noopener" href="https://mp.weixin.qq.com/s/B0t4IFCohjRHlcudmNLL0A">推荐链接</a></p>
 <h2 id="内容概述">内容概述</h2>
-<p>通过比较启发式、统计、机器学习和集成学习模型（层次分析过程（AHP）、频率比（FR）、逻辑回归（LR）、基于Keras的深度学习（KBDL）、XGBoost和LightGBM）在六种不同样本大小（100%、90%、75%、50%、25%和10%）下的表现。结果显示，在各种样本大小下，XGBoost和LightGBM始终优于其他模型。LR和KBDL模型紧随其后，而FR模型受样本大小变化影响最大。AHP作为经验模型，在样本大小变化下保持不受影响。通过SHAP分析，海拔、NDVI、坡度、土地利用以及距离道路和河流等因素被确认为研究区滑坡发生的关键指标，表明人类活动显著影响这些事件。通过验证人类活动和气候的五个时间变化指标，证实了这一推断，为识别滑坡触发因素提供了新方法，尤其是在人类活动强烈的地区。</p>
-<p><em><strong>样本量对滑坡易感性模型的影响</strong></em></p>
+<h3 id="样本量、时变特征因子影响验证">样本量、时变特征因子影响验证</h3>
+<p>通过比较启发式、统计、机器学习和集成学习模型（层次分析过程（AHP）、频率比（FR）、逻辑回归（LR）、基于Keras的深度学习（KBDL）、XGBoost和LightGBM）在六种不同样本大小（100%、90%、75%、50%、25%和10%）下的表现。结果显示，在各种样本大小下，XGBoost和LightGBM始终优于其他模型。LR和KBDL模型紧随其后，而FR模型受样本大小变化影响最大。AHP作为经验模型，在样本大小变化下保持不受影响。通过SHAP分析，海拔、NDVI、坡度、土地利用以及距离道路和河流等因素被确认为研究区滑坡发生的关键指标，表明人类活动显著影响这些事件。通过验证人类活动和气候的五个时间变化指标，证实了这一推断，为识别滑坡触发因素提供了新方法，尤其是在人类活动强烈的地区。<br>
+<img src="/image/1-s2.0-S0098300424002061-gr2.jpg" srcset="/img/loading.gif" lazyload alt="方法框架"><br>
+<em><strong>样本量对滑坡易感性模型的影响</strong></em></p>
 <h3 id="LSA">LSA</h3>
 <p>六种模型、样本量、特征、SHAP分析得到影响滑坡发生的关键特征因子、验证时变指标<br>
 <strong>滑坡敏感性评估</strong> landslide susceptibility assessment LSA：根据各种指标在空间上估计山体滑坡更可能发生的“位置”，包括准备指标（例如，岩性、坡度、高程、坡向和土壤）和触发指标（例如，降雨、地震和人类活动）<br>
@@ -308,10 +315,77 @@ LSA 模型可分为启发式、确定性和统计类型</p>
 <tr>
 <td>统计式模型</td>
 <td>使用历史数据预测山体滑坡：频率比 （<strong>FR</strong>） 、证据权重等传统技术；更高级的机器学习 （ML） 模型，包括逻辑回归 （<strong>LR</strong>） 和支持向量机 （SVM）；尖端的深度学习 （DL） 和集成学习 （EL） 模型，如卷积神经网络、<strong>基于 Keras 的深度学习 （KBDL）、XGBoost、LightGBM</strong></td>
-<td>客观性、有效性；XGBoost：性能卓越、效率高、调整超参数灵活；统计模型严重依赖于准确和全面的山体滑坡清单，因为它们是基于历史山体滑坡模式可以预测未来事件的假设。清单的完整性和准确性至关重要，因为即使数据质量或样本量的微小变化也会显着影响模型性能<strong>探索样本量对不同模型的影响对于 LSA 至关重要</strong></td>
+<td>客观性、有效性；XGBoost：性能卓越、效率高、调整超参数灵活；统计模型严重依赖于准确和全面的山体滑坡清单，因为它们是基于历史山体滑坡模式可以预测未来事件的假设。清单的完整性和准确性至关重要，因为即使数据质量或样本量的微小变化也会显着影响模型性能因此<strong>探索样本量对不同模型的影响对于 LSA 至关重要</strong></td>
 </tr>
 </tbody>
 </table>
+<p><strong>样本量</strong><br>
+为了评估样本量对模型有效性的影响，将 70% 的滑坡点训练样本（“1”值）分为 10%、25%、50%、75%、90% 和 100% 的六个子集。为了进行验证，随机选择了总滑坡点的 30% （277）。非滑坡训练点（“0”值）同样被划分为 6 个平衡子集，并且还创建了 277 个非滑坡点用于模型验证。此过程是使用 ArcGIS 10.8 中的“创建随机点”工具执行的。对于四个 ML 模型，模型构建中涉及其他步骤。我们使用 ArcGIS 10.8 中的“提取值到点”工具从训练滑坡和非滑坡点的位置提取指标值。具体来说，对于岩性和 LULC 等分类指标，我们采用分类编码将这些特征转换为数字形式。</p>
+<p><strong>模型</strong></p>
+<table>
+<thead>
+<tr>
+<th>模型</th>
+<th>解释</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>AHP</td>
+<td>一种结构化的决策方法，旨在通过将复杂问题分解为分层子问题来解决问题</td>
+</tr>
+<tr>
+<td>FR</td>
+<td>LSA 中广泛使用的一种双变量统计技术，通过分析滑坡与特征因子的关系来计算滑坡发生的条件概率</td>
+</tr>
+<tr>
+<td>LR</td>
+<td>一种传统的 ML 模型，用于对某个类别或事件发生的概率进行建模，该模型也广泛用于 LSA</td>
+</tr>
+<tr>
+<td>KBDL</td>
+<td>是一个开源神经网络框架，专为快速 DL 实验而设计。在 LSA 中，它采用深度神经网络来捕获指标与滑坡发生之间的复杂非线性关系</td>
+</tr>
+<tr>
+<td>XGBoost</td>
+<td>最先进的 EL 模型，属于梯度提升决策树 （GBDT） 系列。当应用于 LSA 时，XGBoost 可以通过迭代改进其预测来有效地处理各种指标和山体滑坡事件之间的非线性依赖关系</td>
+</tr>
+<tr>
+<td>LightGBM</td>
+<td>EL模型，一种高效的梯度提升框架，针对大型高维数据集进行了优化，在 LSA 中具有显着的应用</td>
+</tr>
+</tbody>
+</table>
+<p><strong>模型校准</strong><br>
+TPE方法：用于超参数优化，通过从先前的评估中学习以专注于有前途的搜索空间领域来提高效率<br>
+构造了两个概率模型：l(X)和g(x)，分别反映好超参数和坏超参数的分布</p>
+<p><strong>模型验证</strong><br>
+Precision、Recall、<span class="katex"><span class="katex-mathml"><math xmlns="http://www.w3.org/1998/Math/MathML"><semantics><mrow><msub><mi>F</mi><mn>1</mn></msub></mrow><annotation encoding="application/x-tex">F_{1}</annotation></semantics></math></span><span class="katex-html" aria-hidden="true"><span class="base"><span class="strut" style="height:0.8333em;vertical-align:-0.15em;"></span><span class="mord"><span class="mord mathnormal" style="margin-right:0.13889em;">F</span><span class="msupsub"><span class="vlist-t vlist-t2"><span class="vlist-r"><span class="vlist" style="height:0.3011em;"><span style="top:-2.55em;margin-left:-0.1389em;margin-right:0.05em;"><span class="pstrut" style="height:2.7em;"></span><span class="sizing reset-size6 size3 mtight"><span class="mord mtight"><span class="mord mtight">1</span></span></span></span></span><span class="vlist-s">​</span></span><span class="vlist-r"><span class="vlist" style="height:0.15em;"><span></span></span></span></span></span></span></span></span></span> score、OA（总体准确率）、AP（平均精确率）、AU ROC（受试者工作特征下面积）、AMP（平均模型性能）</p>
+<p><strong>SHAP分析</strong><br>
+SHAP 分析作为可解释 ML 技术的一种事后方法，通过量化每个特征对预测的贡献，提供了一种详细的方法来解释机器学习模型的预测。这项技术阐明了输入特征在影响模型结果中的作用，这对于显示输入和输出错综复杂的复杂模型的行为至关重要</p>
+<h2 id="实验结果">实验结果</h2>
+<p>1、相关性分析和多重共线性分析：Pearson相关系数（热力图）、VIF和TOL（VIF倒数）</p>
+<p>2、LS映射：用自然断点法将 31 个（AHP1，其他5个模型不同样本量各6）模型的 LS 映射分为五个级别（非常高、高、中等、低和非常低）</p>
+<p>3、模型性能对比</p>
+<p>4、指标分析和触发因素分析<br>
+对不同样本量的XGBoost进行SHAP分析<br>
+对不同样本量的LightGBM进行SHAP分析<br>
+结果：滑坡由人类引起<br>
+验证：选取与人类活动相关的特征因子，滑坡发生的FR在不同时变特征因子上的分布</p>
+<h2 id="讨论">讨论</h2>
+<p><strong>样本量</strong><br>
+提升样本量模型的稳定性和准确性，确保了对不完整或稀疏数据集的弹性，这些模型中EL模型表现最好，但是对样本量的敏感性最小</p>
+<p><strong>触发因素分析和人类活动</strong><br>
+SHAP分析</p>
+<p><strong>改进的LSA模型选择框架</strong><br>
+<img src="/image/1-s2.0-S0098300424002061-gr14.jpg" srcset="/img/loading.gif" lazyload alt=""></p>
+<h2 id="总结">总结</h2>
+<p>局限：<br>
+1、不同环境条件下的样本量对模型的影响不一致，本研究没有泛用性<br>
+2、没有从时间尺度、季节角度分析滑坡</p>
+<p>内容：<br>
+滑坡清查的质量和完整性可能会显著影响 LSA，并进一步影响后续的滑坡管理、土地规划和区域可持续发展。本研究评估了竹山县 6 个样本量 （100%、90%、75%、50%、25% 和 10%） 的 6 个 LSA 模型 （AHP、FR、LR、KBDL、XGBoost 和 LightGBM） 的性能，具体探讨了滑坡清单的完整性对不同模型的影响程度。结果揭示了不同模型受样本量影响的方式存在显著差异，使其适用于不同的场景。当滑坡清单的质量和完整性不确定时，建议使用 XGBoost 和 LightGBM 模型，因为它们在 LSA 中显示出样本量变化的影响最小。对于极度稀缺或没有库存的情况，建议使用 AHP，因为它不依赖数据进行模型构建。尽管 FR 模型对样本量敏感，但其合理的性能、低计算机资源消耗和易于操作使其成为完整库存场景的可行选择。因此，了解样本量对 LSA 的影响至关重要，但为 LSA 选择合适的模型仍然需要考虑各种情况。<br>
+SHAP 分析可视化了各种滑坡指标如何促进模型构建，并通过与海拔、NDVI、坡度、与河流和道路的接近程度以及 LULC 相关的结果正确推断出人类活动作为研究区域的触发因素。关于人类活动和气候的五个时变指标的 FR 验证了这一推论，这为识别滑坡触发因素提供了一种新方法。拟议的修订后的 LSA 框架旨在通过整合对景观特征的透彻理解来加强区域滑坡管理，建议在全球范围内的 LSA 工作中更广泛地采用该框架。未来的研究应侧重于扩大模型多样性以解决各种条件下数据不完整的影响，增强 LSA 框架的适应性，使用可解释的 ML 技术深入分析人类活动对山体滑坡的影响，解决 LSA 中的时间库存不完整问题，并批判性地评估模型对多个学科之间样本量变化的敏感性。</p>
 
                 
               </div>
@@ -473,6 +547,11 @@ LSA 模型可分为启发式、确定性和统计类型</p>
 
 
   
+
+
+  
+  
+
 
 
 

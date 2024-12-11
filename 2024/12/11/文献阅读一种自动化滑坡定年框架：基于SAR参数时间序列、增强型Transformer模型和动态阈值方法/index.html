@@ -19,23 +19,26 @@
   <meta name="author" content="sandaokansini">
   <meta name="keywords" content="">
   
-    <meta name="description" content="关系抽取 代码基于此博客 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495# from">
+    <meta name="description" content="原文链接 研究方法 预处理(I)从Sentinel-1数据中提取 SAR 参数 步骤(II)被组合成多波段时间序列 步骤(III)作改进的 Transformer 模型的输入  步骤(III)">
 <meta property="og:type" content="article">
-<meta property="og:title" content="三元组构筑">
-<meta property="og:url" content="https://sandaokansini.github.io/2024/12/10/%E4%B8%89%E5%85%83%E7%BB%84%E6%9E%84%E7%AD%91/index.html">
+<meta property="og:title" content="文献阅读|一种自动化滑坡定年框架：基于SAR参数时间序列、增强型Transformer模型和动态阈值方法">
+<meta property="og:url" content="https://sandaokansini.github.io/2024/12/11/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E4%B8%80%E7%A7%8D%E8%87%AA%E5%8A%A8%E5%8C%96%E6%BB%91%E5%9D%A1%E5%AE%9A%E5%B9%B4%E6%A1%86%E6%9E%B6%EF%BC%9A%E5%9F%BA%E4%BA%8ESAR%E5%8F%82%E6%95%B0%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E3%80%81%E5%A2%9E%E5%BC%BA%E5%9E%8BTransformer%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%8A%A8%E6%80%81%E9%98%88%E5%80%BC%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="三刀砍死你">
-<meta property="og:description" content="关系抽取 代码基于此博客 1234567891011121314151617181920212223242526272829303132333435363738394041424344454647484950515253545556575859606162636465666768697071727374757677787980818283848586878889909192939495# from">
+<meta property="og:description" content="原文链接 研究方法 预处理(I)从Sentinel-1数据中提取 SAR 参数 步骤(II)被组合成多波段时间序列 步骤(III)作改进的 Transformer 模型的输入  步骤(III)">
 <meta property="og:locale" content="zh_CN">
-<meta property="article:published_time" content="2024-12-10T01:09:09.000Z">
-<meta property="article:modified_time" content="2024-12-10T09:07:51.028Z">
+<meta property="og:image" content="https://sandaokansini.github.io/image/1-s2.0-S1569843224001493-gr1.jpg">
+<meta property="og:image" content="https://sandaokansini.github.io/image/1-s2.0-S1569843224001493-gr2.jpg">
+<meta property="article:published_time" content="2024-12-11T03:52:29.000Z">
+<meta property="article:modified_time" content="2024-12-11T07:11:55.310Z">
 <meta property="article:author" content="sandaokansini">
-<meta property="article:tag" content="代码">
-<meta property="article:tag" content="三元组">
+<meta property="article:tag" content="文献">
+<meta property="article:tag" content="滑坡">
 <meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://sandaokansini.github.io/image/1-s2.0-S1569843224001493-gr1.jpg">
   
   
   
-  <title>三元组构筑 - 三刀砍死你</title>
+  <title>文献阅读|一种自动化滑坡定年框架：基于SAR参数时间序列、增强型Transformer模型和动态阈值方法 - 三刀砍死你</title>
 
   <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
 
@@ -201,7 +204,7 @@
       <div class="banner-text text-center fade-in-up">
         <div class="h2">
           
-            <span id="subtitle" data-typed-text="三元组构筑"></span>
+            <span id="subtitle" data-typed-text="文献阅读|一种自动化滑坡定年框架：基于SAR参数时间序列、增强型Transformer模型和动态阈值方法"></span>
           
         </div>
 
@@ -212,8 +215,8 @@
     
       <span class="post-meta">
         <i class="iconfont icon-date-fill" aria-hidden="true"></i>
-        <time datetime="2024-12-10 09:09" pubdate>
-          2024年12月10日 上午
+        <time datetime="2024-12-11 11:52" pubdate>
+          2024年12月11日 中午
         </time>
       </span>
     
@@ -224,7 +227,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          538 字
+          52 字
         
       </span>
     
@@ -235,7 +238,7 @@
         
         
         
-          5 分钟
+          1 分钟
         
       </span>
     
@@ -272,14 +275,20 @@
       <div class="container nopadding-x-md" id="board-ctn">
         <div id="board">
           <article class="post-content mx-auto">
-            <h1 id="seo-header">三元组构筑</h1>
+            <h1 id="seo-header">文献阅读|一种自动化滑坡定年框架：基于SAR参数时间序列、增强型Transformer模型和动态阈值方法</h1>
             
             
               <div class="markdown-body">
                 
-                <p>关系抽取<br>
-<a target="_blank" rel="noopener" href="https://blog.csdn.net/piupiu78/article/details/129202759">代码基于此博客</a></p>
-<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><code class="hljs python"><span class="hljs-comment"># from dataToNeo4jClass.DataToNeo4jClass import DataToNeo4j</span><br><span class="hljs-keyword">import</span> os<br><span class="hljs-keyword">import</span> pandas <span class="hljs-keyword">as</span> pd<br><span class="hljs-keyword">import</span> numpy <span class="hljs-keyword">as</span> np<br><br><span class="hljs-comment"># 文件夹路径，包含所有 Excel 文件</span><br>folder_path = <span class="hljs-string">r&#x27;D:\python\pythonproject\pythonProjectstudyproject\111&#x27;</span><br>output_folder = <span class="hljs-string">r&#x27;D:\python\pythonproject\pythonProjectstudyproject\333&#x27;</span><br><br><span class="hljs-comment"># 确保输出文件夹存在</span><br>os.makedirs(output_folder, exist_ok=<span class="hljs-literal">True</span>)<br><br><span class="hljs-keyword">def</span> <span class="hljs-title function_">relation_extraction</span>(<span class="hljs-params">invoice_data, output_excel_path</span>):<br>    <span class="hljs-string">&quot;&quot;&quot;关系数据抽取并保存到Excel文件&quot;&quot;&quot;</span><br><br>    links_dict = &#123;&#125;<br>    name_list = []<br>    relation_list = []<br>    name2_list = []<br>    <span class="hljs-comment"># 用m标注subject位置</span><br>    m = <span class="hljs-number">0</span><br>    <span class="hljs-keyword">for</span> name <span class="hljs-keyword">in</span> invoice_data.columns:<br>        <span class="hljs-keyword">if</span> name <span class="hljs-keyword">in</span> [<span class="hljs-string">&#x27;名称&#x27;</span>, <span class="hljs-string">&#x27;山峰&#x27;</span>, <span class="hljs-string">&#x27;L2_name&#x27;</span>, <span class="hljs-string">&#x27;NAME&#x27;</span>, <span class="hljs-string">&#x27;CNAME&#x27;</span>, <span class="hljs-string">&#x27;Name&#x27;</span>, <span class="hljs-string">&#x27;AGRZONAME&#x27;</span>, <span class="hljs-string">&#x27;name&#x27;</span>]:<br>            m = invoice_data.columns.get_loc(name)<br>            <span class="hljs-keyword">break</span>  <span class="hljs-comment"># 找到主键列后立即退出循环</span><br>    <span class="hljs-comment"># 遍历表格每行</span><br>    <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> <span class="hljs-built_in">range</span>(<span class="hljs-number">0</span>, <span class="hljs-built_in">len</span>(invoice_data)):<br>        <span class="hljs-comment"># m列i行value为1个subject节点</span><br>        name_node = invoice_data[invoice_data.columns[m]][i]  <span class="hljs-comment"># 依次取subject名称值</span><br>        <span class="hljs-comment"># n为除m之外的列，value为object，key为relation</span><br>        n = <span class="hljs-number">0</span><br>        <span class="hljs-keyword">while</span> n &lt; <span class="hljs-built_in">len</span>(invoice_data.columns):<br>            <span class="hljs-keyword">if</span> n == m:<br>                n += <span class="hljs-number">1</span><br>                <span class="hljs-keyword">continue</span><br>            <span class="hljs-comment"># n的key加入relation列表</span><br>            relation_list.append(invoice_data.columns[n])<br>            <span class="hljs-comment"># n列i行value加入object的列表</span><br>            name2_list.append(invoice_data[invoice_data.columns[n]][i])<br>            <span class="hljs-comment"># subject节点加入subject列表</span><br>            name_list.append(name_node)<br>            n += <span class="hljs-number">1</span><br><br>    <span class="hljs-comment"># 将数据中 int 类型全部转成 string,将空值保留为none</span><br>    name_list = [<span class="hljs-built_in">str</span>(i) <span class="hljs-keyword">if</span> pd.notnull(i) <span class="hljs-keyword">else</span> <span class="hljs-literal">None</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> name_list]<br>    name2_list = [<span class="hljs-built_in">str</span>(i) <span class="hljs-keyword">if</span> pd.notnull(i) <span class="hljs-keyword">else</span> <span class="hljs-literal">None</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> name2_list]<br>    relation_list = [<span class="hljs-built_in">str</span>(i) <span class="hljs-keyword">if</span> pd.notnull(i) <span class="hljs-keyword">else</span> <span class="hljs-literal">None</span> <span class="hljs-keyword">for</span> i <span class="hljs-keyword">in</span> relation_list]<br>    <span class="hljs-comment"># 整合数据，将三个 list 整合成一个 dict，类似三元组形式</span><br>    links_dict[<span class="hljs-string">&#x27;名称&#x27;</span>] = name_list<br>    links_dict[<span class="hljs-string">&#x27;属性&#x27;</span>] = relation_list<br>    links_dict[<span class="hljs-string">&#x27;数值&#x27;</span>] = name2_list<br><br>    <span class="hljs-comment"># 将数据转成 DataFrame</span><br>    df_data = pd.DataFrame(links_dict)<br>    <span class="hljs-comment"># 删除有空值的行</span><br>    df_data.dropna(inplace=<span class="hljs-literal">True</span>)<br>    <span class="hljs-comment"># 将 DataFrame 导出到 Excel 文件</span><br>    df_data.to_excel(output_excel_path, index=<span class="hljs-literal">False</span>)<br><br>    <span class="hljs-keyword">return</span> df_data<br><br><span class="hljs-keyword">for</span> file_name <span class="hljs-keyword">in</span> os.listdir(folder_path):<br>    <span class="hljs-keyword">if</span> file_name.endswith(<span class="hljs-string">&#x27;.xls&#x27;</span>) <span class="hljs-keyword">or</span> file_name.endswith(<span class="hljs-string">&#x27;.xlsx&#x27;</span>):  <span class="hljs-comment"># 只处理 Excel 文件</span><br>        file_path = os.path.join(folder_path, file_name)<br>        <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;正在处理文件: <span class="hljs-subst">&#123;file_name&#125;</span>&quot;</span>)<br><br>        <span class="hljs-comment"># 读取 Excel 文件</span><br>        invoice_data = pd.read_excel(file_path, header=<span class="hljs-number">0</span>)<br><br>    <span class="hljs-comment"># 删除 &#x27;FID&#x27; 列（如果存在）</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;FID&#x27;</span> <span class="hljs-keyword">in</span> invoice_data.columns:<br>        invoice_data.drop(columns=<span class="hljs-string">&#x27;FID&#x27;</span>, inplace=<span class="hljs-literal">True</span>)<br><br>    <span class="hljs-comment"># 检查并重命名列</span><br>    rename_mapping = &#123;&#125;<br>    <span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;lng&#x27;</span> <span class="hljs-keyword">in</span> invoice_data.columns:<br>        rename_mapping[<span class="hljs-string">&#x27;lng&#x27;</span>] = <span class="hljs-string">&#x27;经度&#x27;</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;long&#x27;</span> <span class="hljs-keyword">in</span> invoice_data.columns:<br>        rename_mapping[<span class="hljs-string">&#x27;long&#x27;</span>] = <span class="hljs-string">&#x27;经度&#x27;</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;lat&#x27;</span> <span class="hljs-keyword">in</span> invoice_data.columns:<br>        rename_mapping[<span class="hljs-string">&#x27;lat&#x27;</span>] = <span class="hljs-string">&#x27;纬度&#x27;</span><br>    <span class="hljs-keyword">if</span> <span class="hljs-string">&#x27;AREA&#x27;</span> <span class="hljs-keyword">in</span> invoice_data.columns:<br>        rename_mapping[<span class="hljs-string">&#x27;AREA&#x27;</span>] = <span class="hljs-string">&#x27;面积(m2)&#x27;</span><br><br>    <span class="hljs-keyword">if</span> rename_mapping:  <span class="hljs-comment"># 仅当有列需要重命名时执行</span><br>        invoice_data.rename(columns=rename_mapping, inplace=<span class="hljs-literal">True</span>)<br>    <span class="hljs-built_in">print</span>(np.<span class="hljs-built_in">any</span>(invoice_data.isnull()))<br>    <span class="hljs-comment"># 输出</span><br>    relation_output_path = os.path.join(output_folder, <span class="hljs-string">f&quot;<span class="hljs-subst">&#123;file_name[<span class="hljs-number">2</span>:-<span class="hljs-number">5</span>]&#125;</span>_<span class="hljs-subst">&#123;file_name[:<span class="hljs-number">2</span>]&#125;</span>.xlsx&quot;</span>)<br>    <span class="hljs-comment"># 调用函数</span><br>    rd=relation_extraction(invoice_data, relation_output_path)<br><br>    <span class="hljs-built_in">print</span>(<span class="hljs-string">f&quot;已保存关系数据到: <span class="hljs-subst">&#123;relation_output_path&#125;</span>&quot;</span>)<br>    <span class="hljs-built_in">print</span>(np.<span class="hljs-built_in">any</span>(rd.isnull()))<br><br></code></pre></td></tr></table></figure>
+                <p><a target="_blank" rel="noopener" href="https://www.sciencedirect.com/science/article/pii/S1569843224001493?via%3Dihub">原文链接</a></p>
+<h2 id="研究方法">研究方法</h2>
+<p>预处理(I)从Sentinel-1数据中提取 SAR 参数<br>
+步骤(II)被组合成多波段时间序列<br>
+步骤(III)作改进的 Transformer 模型的输入<br>
+<img src="/image/1-s2.0-S1569843224001493-gr1.jpg" srcset="/img/loading.gif" lazyload alt="实验步骤"><br>
+步骤(III)<br>
+<img src="/image/1-s2.0-S1569843224001493-gr2.jpg" srcset="/img/loading.gif" lazyload alt="模型架构"></p>
+
                 
               </div>
             
@@ -291,9 +300,9 @@
     <div class="post-meta">
       <i class="iconfont icon-tags"></i>
       
-        <a href="/tags/%E4%BB%A3%E7%A0%81/" class="print-no-link">#代码</a>
+        <a href="/tags/%E6%96%87%E7%8C%AE/" class="print-no-link">#文献</a>
       
-        <a href="/tags/%E4%B8%89%E5%85%83%E7%BB%84/" class="print-no-link">#三元组</a>
+        <a href="/tags/%E6%BB%91%E5%9D%A1/" class="print-no-link">#滑坡</a>
       
     </div>
   
@@ -305,8 +314,8 @@
 
   <div class="license-box my-3">
     <div class="license-title">
-      <div>三元组构筑</div>
-      <div>https://sandaokansini.github.io/2024/12/10/三元组构筑/</div>
+      <div>文献阅读|一种自动化滑坡定年框架：基于SAR参数时间序列、增强型Transformer模型和动态阈值方法</div>
+      <div>https://sandaokansini.github.io/2024/12/11/文献阅读一种自动化滑坡定年框架：基于SAR参数时间序列、增强型Transformer模型和动态阈值方法/</div>
     </div>
     <div class="license-meta">
       
@@ -318,7 +327,7 @@
       
         <div class="license-meta-item license-meta-date">
           <div>发布于</div>
-          <div>2024年12月10日</div>
+          <div>2024年12月11日</div>
         </div>
       
       
@@ -350,9 +359,9 @@
                   <article class="post-prev col-6">
                     
                     
-                      <a href="/2024/12/11/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E4%B8%80%E7%A7%8D%E8%87%AA%E5%8A%A8%E5%8C%96%E6%BB%91%E5%9D%A1%E5%AE%9A%E5%B9%B4%E6%A1%86%E6%9E%B6%EF%BC%9A%E5%9F%BA%E4%BA%8ESAR%E5%8F%82%E6%95%B0%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E3%80%81%E5%A2%9E%E5%BC%BA%E5%9E%8BTransformer%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%8A%A8%E6%80%81%E9%98%88%E5%80%BC%E6%96%B9%E6%B3%95/" title="文献阅读|一种自动化滑坡定年框架：基于SAR参数时间序列、增强型Transformer模型和动态阈值方法">
+                      <a href="/2024/12/11/%E7%9F%A5%E8%AF%86%E6%9C%BA%E5%99%A8%E5%AD%A6%E4%B9%A0/" title="知识机器学习">
                         <i class="iconfont icon-arrowleft"></i>
-                        <span class="hidden-mobile">文献阅读|一种自动化滑坡定年框架：基于SAR参数时间序列、增强型Transformer模型和动态阈值方法</span>
+                        <span class="hidden-mobile">知识机器学习</span>
                         <span class="visible-mobile">上一篇</span>
                       </a>
                     
@@ -360,8 +369,8 @@
                   <article class="post-next col-6">
                     
                     
-                      <a href="/2024/12/09/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E6%B7%B1%E5%BA%A6%E5%AD%A6%E4%B9%A0%E5%A4%A7%E7%BB%BC%E8%BF%B0/" title="文献阅读|深度学习大综述">
-                        <span class="hidden-mobile">文献阅读|深度学习大综述</span>
+                      <a href="/2024/12/10/%E4%B8%89%E5%85%83%E7%BB%84%E6%9E%84%E7%AD%91/" title="三元组构筑">
+                        <span class="hidden-mobile">三元组构筑</span>
                         <span class="visible-mobile">下一篇</span>
                         <i class="iconfont icon-arrowright"></i>
                       </a>
@@ -381,8 +390,8 @@
     
       <script type="text/javascript">
         var disqus_config = function() {
-          this.page.url = 'https://sandaokansini.github.io/2024/12/10/%E4%B8%89%E5%85%83%E7%BB%84%E6%9E%84%E7%AD%91/';
-          this.page.identifier = '/2024/12/10/%E4%B8%89%E5%85%83%E7%BB%84%E6%9E%84%E7%AD%91/';
+          this.page.url = 'https://sandaokansini.github.io/2024/12/11/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E4%B8%80%E7%A7%8D%E8%87%AA%E5%8A%A8%E5%8C%96%E6%BB%91%E5%9D%A1%E5%AE%9A%E5%B9%B4%E6%A1%86%E6%9E%B6%EF%BC%9A%E5%9F%BA%E4%BA%8ESAR%E5%8F%82%E6%95%B0%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E3%80%81%E5%A2%9E%E5%BC%BA%E5%9E%8BTransformer%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%8A%A8%E6%80%81%E9%98%88%E5%80%BC%E6%96%B9%E6%B3%95/';
+          this.page.identifier = '/2024/12/11/%E6%96%87%E7%8C%AE%E9%98%85%E8%AF%BB%E4%B8%80%E7%A7%8D%E8%87%AA%E5%8A%A8%E5%8C%96%E6%BB%91%E5%9D%A1%E5%AE%9A%E5%B9%B4%E6%A1%86%E6%9E%B6%EF%BC%9A%E5%9F%BA%E4%BA%8ESAR%E5%8F%82%E6%95%B0%E6%97%B6%E9%97%B4%E5%BA%8F%E5%88%97%E3%80%81%E5%A2%9E%E5%BC%BA%E5%9E%8BTransformer%E6%A8%A1%E5%9E%8B%E5%92%8C%E5%8A%A8%E6%80%81%E9%98%88%E5%80%BC%E6%96%B9%E6%B3%95/';
         };
         Fluid.utils.loadComments('#disqus_thread', function() {
           var d = document, s = d.createElement('script');
